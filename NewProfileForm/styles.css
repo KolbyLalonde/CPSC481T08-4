@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --backgroundGray:#C4C2F3;
+    --borderGray: #ccc;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background: linear-gradient(135deg, #A68EFF, #C49CFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* GenLink Title */
+h2 {
+    font-family: "Lexend", sans-serif; /* Use Lexend for the title */
+    font-size: 20px; /* Slightly smaller title */
+    font-weight: 700;
+    color: var(--textPurple);
+    margin-bottom: 15px;
+}
+
+.name-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.name-group label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.name-group input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.radio-group label {
+    font-weight: normal;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 45%;
+}
+
+.exit {
+    background-color: #6E90E2;
+    color: white;
+}
+
+.save {
+    background-color: #A68EFF;
+    color: white;
+}

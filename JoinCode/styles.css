@@ -111,4 +111,28 @@ button:hover {
     text-align: center;
 }
 
-/* Cr
+/* Buttons - Unique Colors */
+#Child {
+    background-color: #8A75E2; /* Soft Purple */
+}
+
+#Child:hover {
+    background-color: #785BCF; /* Slightly Darker */
+}
+
+#GP {
+    background-color: #6E90E2; /* Blue-Purple */
+}
+
+#GP:hover {
+    background-color: #5A7ACC; /* Darker Blue */
+}
+
+#Parent {
+    background-color: #9C6FE2; /* Violet */
+}
+
+#Parent:hover {
+    background-color: #874DCC; /* Darker Violet */
+}
+
