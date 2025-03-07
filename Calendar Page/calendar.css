@@ -5,18 +5,51 @@
     --buttonHoverPurple: #797DD6;
 }
 
+body {
+    font-size: 18px;
+}
+
+input {
+    font-size: 18px;
+    border: 2px solid var(--textPurple); /* Change border color */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input[type="checkbox"]{
+    transform: scale(1.5); /* Increase size */
+    margin-right: 5px; /* Add spacing between checkboxes and text */
+    accent-color: var(--textPurple);
+}
+
+input[type="text"] {
+    padding-left: 8px; /* Add some spacing inside */
+    padding: 5px;
+    border-radius: 5px; /* Optional: Rounded corners */
+}
+
+option {
+    font-size: 18px;
+}
+
+select {
+    font-size: 18px;
+    border: 2px solid var(--textPurple); /* Change border color */
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .title {
     text-align: center;
     margin-bottom: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
     color: var(--textPurple);
 }
 
 .heading {
     text-align: center;
     margin-bottom: 15px;
-    margin-top: 45px;
-    color: var(--textPurple);
+    margin-top: 30px;
 }
 
 
@@ -41,8 +74,8 @@
 }
 
 .FormContainer {
-    padding: 30px;
-    padding-top:10px;
+    padding: 10px;
+    padding-top:5px;
     line-height: 2;
 }
 
@@ -61,7 +94,7 @@
     width: 100%;
     text-align: center;
     button {
-        width:  80%;
+        width:  90%;
         height: 40px;
     }
 }
@@ -76,8 +109,12 @@ button:hover {
 }
 
 .FormButton button{
-    width: 120px;
-    height: 30px;
+    width: 150px;
+    height: 40px;
+}
+
+.FormButton .exit{
+    background-color: grey;
 }
 
 button{
@@ -86,6 +123,7 @@ button{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
 }
 
 label{
