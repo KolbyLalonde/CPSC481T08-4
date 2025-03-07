@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <!-- <link rel="stylesheet" href="../style.css"> -->
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+    <h2 class="heading"> Create New Event</h2>
+    <div class = FormContainer>
+        <form>
+            <label for="event_name">Event Name:</label>
+            <input type = "text" id="event_name">
+            <br>
+            <br>
+            <label for="members">Members:</label><br>
+            <div class = "members">
+                <input type="checkbox" id="leslie" name="members[]" value="leslie">
+                <label for="leslie">Leslie</label><br>
+                
+                <input type="checkbox" id="kwong" name="members[]" value="kwong">
+                <label for="kwong">Kwong</label><br>
+                
+                <input type="checkbox" id="james" name="members[]" value="james">
+                <label for="james">James</label><br>
+                <br>
+            </div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location">
+            <br>
+            <br>
+            <label for="meeting_type">Meeting Type:</label>
+            <select id="meeting_type" name="meeting_type">
+                <option value="virtual">Virtual</option>
+                <option value="in_person">In-Person</option>
+            </select>
+            <br>
+            <br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+            <br>
+            <br>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time">
+            <br>
+            <br>
+        </form>
+        <div class="FormButton">
+            <button type="submit">Exit</button>
+            <button type="submit">Create</button>
+        </div>
+    </div>
+</body>
+</html>
+
+

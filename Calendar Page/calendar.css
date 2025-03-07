@@ -1,0 +1,100 @@
+/* Calendar Title */
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    color: var(--textPurple);
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 45px;
+    color: var(--textPurple);
+}
+
+
+.date {
+    margin-top: -10px;
+    display: flex;
+    justify-content: space-between; /* Pushes content to both ends */
+    align-items: center; /* Aligns items vertically */
+    width: 100%; /* Ensures full width */
+    font-size: smaller;
+    margin-bottom: -10px;
+}
+
+/* Event Box */
+.event {
+    color: black;
+    padding-left: 15px;
+}
+
+.container{
+    line-height: 0.9;
+}
+
+.FormContainer {
+    padding: 30px;
+    padding-top:10px;
+    line-height: 2;
+}
+
+.members {
+    margin-left: 100px;
+}
+
+
+/* Button Sticking to Bottom */
+.button {
+    padding: 10px;
+    position: fixed;
+    bottom: 16px;
+    left: -10px;
+    right:0px;
+    width: 100%;
+    text-align: center;
+    button {
+        width:  80%;
+        height: 40px;
+    }
+}
+button:hover {
+    background-color: var(--buttonHoverPurple);
+}
+
+.FormButton {
+    display: flex;
+    justify-content: space-between;
+    bottom: 16px;
+}
+
+.FormButton button{
+    width: 120px;
+    height: 30px;
+}
+
+button{
+    background-color: var(--textPurple);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+label{
+    font-weight: bold;
+}
+
+.members label{
+    font-weight: normal;
+}
+
+
+
