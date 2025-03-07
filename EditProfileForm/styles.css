@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --backgroundGray: #C4C2F3;
+    --borderGray: #ccc;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background: linear-gradient(135deg, #A68EFF, #C49CFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0; /* Added to reset any default padding */
+}
+
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%; /* Adjust width to fit smaller screens */
+    max-width: 350px; /* Max width to avoid stretching on larger screens */
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+h2 {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px; /* Smaller title */
+    font-weight: 700;
+    color: var(--textPurple);
+    margin-bottom: 12px; /* Reduced margin */
+}
+
+.name-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.name-group label {
+    font-size: 14px; /* Smaller label size */
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.name-group input {
+    flex-grow: 1;
+    padding: 6px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px; /* Smaller input text */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if the space is tight */
+    gap: 5px; /* Adds some space between the checkboxes */
+    align-items: center; /* Vertically center the items */
+    margin-bottom: 10px;
+}
+
+.checkbox-group input {
+    margin: 0; /* Remove default margin on checkboxes */
+}
+
+
+label {
+    font-size: 14px; /* Smaller label size */
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 6px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px; /* Smaller input text */
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.radio-group label {
+    font-size: 12px; /* Smaller font size for radio buttons */
+    font-weight: normal;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px; /* Reduced margin */
+}
+
+button {
+    padding: 8px 12px; /* Smaller button padding */
+    border: none;
+    border-radius: 5px;
+    font-size: 12px; /* Smaller font size for buttons */
+    cursor: pointer;
+    width: 45%;
+}
+
+.exit {
+    background-color: #6E90E2;
+    color: white;
+}
+
+.save {
+    background-color: #A68EFF;
+    color: white;
+}

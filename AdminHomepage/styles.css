@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --backgroundGray: #C4C2F3;
+    --borderGray: #ccc;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background: linear-gradient(135deg, #A68EFF, #C49CFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--textPurple);
+    margin-bottom: 12px;
+}
+
+/* Family Join Code Section */
+.family-join-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.family-join-code label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.family-join-code span {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.copy-code-button {
+    padding: 6px 12px;
+    background-color: var(--buttonPurple);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.copy-code-button:hover {
+    background-color: var(--buttonHoverPurple);
+}
+
+/* Family Member Section */
+.family-member-field h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--textPurple);
+    margin-bottom: 12px;
+}
+
+.family-member-list {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.family-member-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--borderGray);
+}
+
+.family-member-list li span {
+    font-size: 18px;
+    color: #333;
+}
+
+.edit-icon {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-image: url('https://img.icons8.com/ios/50/000000/edit.png'); /* Pencil icon */
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+}
+
+/* Add New Family Member Button */
+.button {
+    padding: 8px 12px;
+    margin-top: 20px;
+    background-color: var(--buttonPurple);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: var(--buttonHoverPurple);
+}
+
+hr {
+    margin: 20px 0;
+    border: 1px solid var(--borderGray);
+}
+
+/* Footer Tab Bar */
+.footer-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid var(--borderGray);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    color: var(--textPurple);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid transparent; /* Default border is transparent */
+}
+
+.tab-button.active {
+    background-color: var(--buttonPurple);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid var(--buttonPurple); /* Active tab border */
+}
+
+.tab-button:hover {
+    background-color: var(--buttonHoverPurple);
+    color: white;
+}
+
+.tab-button#home-tab {
+    border: 1.5px solid var(--buttonPurple); /* Give Home Tab a purple border */
+}
