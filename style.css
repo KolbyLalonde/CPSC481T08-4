@@ -3,6 +3,7 @@
     --textPurple: #968AEC;
     --buttonPurple: #968AEC;
     --buttonHoverPurple: #797DD6;
+    --backgroundPurple: #6D63BC;
 }
 
 body {
@@ -60,14 +61,14 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover {
+/* button:hover {
     background-color: var(--buttonHoverPurple);
-}
+} */
 
 
 /* Text Area Styling */
 .text-area {
-    width: 100%;
+    width: 285px;
     max-width: 100%;
     height: 20px; /* Keep the height as 20px */
     padding: 10px;
@@ -162,13 +163,11 @@ button:hover {
 
 
 /* Chat Container */
-/* Chat Container - Update to ensure proper positioning */
 .chat-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
-    margin-top: 60px; /* Reduced from 80px to give more space for messages */
+    margin-top: 40px; /* Reduced from 80px to give more space for messages */
     overflow-y: auto;
     max-height: calc(100vh - 130px); /* Adjusted to provide more space */
     box-sizing: border-box;
@@ -241,7 +240,7 @@ button:hover {
 /* Input container - ensure it stays at the bottom */
 .input-container {
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     left: 0;
     right: 0;
     width: calc(100% - 20px);
@@ -289,22 +288,26 @@ button:hover {
 /* Input Container */
 .input-container {
     position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100vw - 40px);
-    max-width: 600px;
+    bottom: 0; /* Sticks to the bottom */
+    left: 0; /* Ensures it starts at the very left */
+    width: 100vw; /* Full screen width */
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: bottom 0.3s ease-out;  /* Smooth transition for moving the entire container */
+    transition: bottom 0.3s ease-out;
     z-index: 10;
+    background-color: var(--textPurple);
+    padding: 10px; /* Ensures spacing inside */
+    box-sizing: border-box; /* Prevents width overflow */
+    margin: 0; /* Ensures no unexpected margins */
 }
+
+
 
 
 /* Send Button Styling */
 .send-button {
-    background-color: var(--textPurple);
+    background-color: var(--backgroundPurple);
     color: white;
     border: none;
     border-radius: 50%;
@@ -318,10 +321,69 @@ button:hover {
 }
 
 .input-container.active {
-    bottom: 274px;  /* Adjust the bottom value based on the keyboard height */
+    bottom: 315px;  /* Adjust the bottom value based on the keyboard height */
 }
 
 /* Send Button Hover Effect */
 .send-button:hover {
     background-color: var(--buttonHoverPurple);
+}
+
+.keyboard__buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: #ddd;
+    border-bottom: 1px solid #ccc;
+}
+
+.keyboard__button {
+    padding: 8px 12px;
+    border: none;
+    background: var(--buttonPurple);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.keyboard__button:hover {
+    background: var(--buttonHoverPurple);
+}
+
+.back-arrow {
+    font-size: 24px; /* Adjust size */
+    margin-right: 15px; /* Space between arrow and text */
+    cursor: pointer; /* Make it clickable */
+    position: absolute;
+    left: 15px; /* Position on the left side */
+}
+
+/* Gallery Styles */
+.gallery-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: white;
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 20; /* Ensure it's above the keyboard */
+    display: flex;
+    justify-content: flex-start;
+}
+
+.gallery-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gallery-image:hover {
+    opacity: 0.7;
 }

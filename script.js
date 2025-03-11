@@ -24,16 +24,41 @@ const Keyboard = {
         this.elements.main = document.createElement("div");
         this.elements.main.classList.add("keyboard", "keyboard--hidden");
         document.body.appendChild(this.elements.main);
-
+    
+        // Create buttons container
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.classList.add("keyboard__buttons");
+        this.elements.main.appendChild(buttonsContainer);
+    
+        // Create "Use Camera" button
+        const cameraButton = document.createElement("button");
+        cameraButton.textContent = "Use Camera";
+        cameraButton.classList.add("keyboard__button");
+        cameraButton.addEventListener("click", () => {
+            this.openCamera();
+        });
+    
+        // Create "Upload Media" button
+        const uploadButton = document.createElement("button");
+        uploadButton.textContent = "Upload Media";
+        uploadButton.classList.add("keyboard__button");
+        uploadButton.addEventListener("click", () => {
+            this.openFileSelector();
+        });
+    
+        // Append buttons
+        buttonsContainer.appendChild(cameraButton);
+        buttonsContainer.appendChild(uploadButton);
+    
         // Create keys container
         this.elements.keysContainer = document.createElement("div");
         this.elements.keysContainer.classList.add("keyboard__keys");
         this.elements.main.appendChild(this.elements.keysContainer);
-
+    
         // Create keys
         this.elements.keysContainer.appendChild(this._createKeys());
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
-
+    
         // Attach event listeners to text inputs
         this.properties.keyboardInputs = document.querySelectorAll(".use-keyboard-input");
         this.properties.keyboardInputs.forEach((element) => {
@@ -43,22 +68,43 @@ const Keyboard = {
                 });
             });
         });
-
+    
         // Click outside handler
         document.addEventListener("click", (event) => {
             const isKeyboard = event.target.closest(".keyboard");
             const isTextArea = event.target.closest(".text-area");
             
-            // If we clicked outside both keyboard and text area, close the keyboard
             if (!isKeyboard && !isTextArea) {
                 this.close();
             }
         });
-
-        // Handle window resize to adjust the input container position
-        window.addEventListener('resize', this._handleKeyboardVisibility.bind(this));
-        this._handleKeyboardVisibility();  // Initial check when the page loads
     },
+
+    openCamera() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                alert("Camera activated! You can now record or take a picture.");
+                // You can integrate this with a `<video>` element to display the feed.
+            })
+            .catch((err) => {
+                alert("Camera access denied or not supported.");
+                console.error(err);
+            });
+    },
+    
+    openFileSelector() {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*, video/*"; // Accept images and videos
+        input.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                alert(`Selected file: ${file.name}`);
+            }
+        });
+        input.click();
+    },
+    
 
     _createKeyBtn(iconName, class1, onclick, class2) {
         this.keyElement = document.createElement("button");
@@ -250,9 +296,60 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendMessage() {
         const messageText = textArea.value.trim();
         if (messageText === "") return;
-
+    
         const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message", "right"); // Add 'right' class for alignment
+        messageElement.classList.add("chat-message", "right");
+    
+        messageElement.innerHTML = ` 
+            <div class="avatar-container">
+                <img src="default-avatar.jpg" class="avatar" alt="Lewis">
+                <span class="user-name">Lewis</span>
+            </div>
+            <div class="message-content">
+                <p>${messageText}</p>
+            </div>
+        `;
+    
+        chatContainer.appendChild(messageElement);
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
+    
+        // Save cursor position before clearing the text
+        const cursorPosition = textArea.selectionStart;
+    
+        // Clear input without losing focus
+        textArea.value = "";
+        
+        // Restore cursor position & keep focus without causing flicker
+        setTimeout(() => {
+            textArea.setSelectionRange(cursorPosition, cursorPosition);
+            textArea.focus();
+        }, 0);
+    }
+    
+    
+
+    sendButton.addEventListener("click", sendMessage);
+
+    textArea.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const textArea = document.querySelector(".text-area");
+    const sendButton = document.querySelector(".send-button");
+    const chatContainer = document.querySelector(".chat-container");
+    const uploadMediaButton = document.querySelector(".upload-media-button");
+    const galleryContainer = document.querySelector(".gallery-container");
+    const keyboardContainer = document.querySelector(".keyboard");
+
+    // Handle sending text messages
+    function sendMessage(messageText) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("chat-message", "right");
 
         messageElement.innerHTML = ` 
             <div class="avatar-container">
@@ -265,16 +362,60 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
         chatContainer.appendChild(messageElement);
-        textArea.value = ""; // Clear input after sending
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    sendButton.addEventListener("click", sendMessage);
-
+    // Send text when enter is pressed
     textArea.addEventListener("keypress", function (event) {
         if (event.key === "Enter" && !event.shiftKey) {
             event.preventDefault();
-            sendMessage();
+            sendMessage(textArea.value.trim());
+            textArea.value = ""; // Clear input after sending
         }
     });
+
+    // Send button click handler
+    sendButton.addEventListener("click", function () {
+        const messageText = textArea.value.trim();
+        if (messageText !== "") {
+            sendMessage(messageText);
+            textArea.value = ""; // Clear input after sending
+        }
+    });
+
+    // Handle media upload button click
+    uploadMediaButton.addEventListener("click", function () {
+        // Hide the keyboard if it's visible
+        keyboardContainer.classList.add("keyboard--hidden");
+
+        // Show the image gallery
+        galleryContainer.style.display = "flex"; // Show the gallery
+    });
+
+    // Handle selecting an image from the gallery
+    const galleryImages = document.querySelectorAll(".gallery-image");
+    galleryImages.forEach((image) => {
+        image.addEventListener("click", function () {
+            const imageUrl = image.src; // Get the selected image's URL
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("chat-message", "right");
+
+            messageElement.innerHTML = ` 
+                <div class="avatar-container">
+                    <img src="default-avatar.jpg" class="avatar" alt="Lewis">
+                    <span class="user-name">Lewis</span>
+                </div>
+                <div class="message-content">
+                    <img src="${imageUrl}" alt="Uploaded Image" class="uploaded-image">
+                </div>
+            `;
+
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Hide the gallery after selection
+            galleryContainer.style.display = "none";
+        });
+    });
 });
+
