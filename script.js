@@ -44,9 +44,13 @@ const Keyboard = {
             });
         });
 
-        // Close keyboard when clicking outside
+        // Click outside handler
         document.addEventListener("click", (event) => {
-            if (!event.target.closest(".keyboard") && !event.target.closest(".text-area")) {
+            const isKeyboard = event.target.closest(".keyboard");
+            const isTextArea = event.target.closest(".text-area");
+            
+            // If we clicked outside both keyboard and text area, close the keyboard
+            if (!isKeyboard && !isTextArea) {
                 this.close();
             }
         });
@@ -144,17 +148,16 @@ const Keyboard = {
 
     open(initialValue, oninput) {
         this.properties.value = initialValue || "";
-        this.elements.main.classList.remove("keyboard--hidden");
-
-        // Move text area up when keyboard opens
+        
+        // Move the text area up and show keyboard simultaneously
         const textArea = document.querySelector(".text-area");
         textArea.classList.add("active");
+        this.elements.main.classList.remove("keyboard--hidden");
     },
 
     close() {
+        // Hide keyboard and move text area down simultaneously
         this.elements.main.classList.add("keyboard--hidden");
-
-        // Move text area back down when keyboard closes
         const textArea = document.querySelector(".text-area");
         textArea.classList.remove("active");
     },
