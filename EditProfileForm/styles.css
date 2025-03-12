@@ -9,8 +9,8 @@
 }
 
 body {
+    font-size: 18px;
     font-family: "Raleway", sans-serif;
-    background: linear-gradient(135deg, #A68EFF, #C49CFF);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +23,6 @@ body {
 /* Main Container */
 .container {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 90%; /* Adjust width to fit smaller screens */
     max-width: 350px; /* Max width to avoid stretching on larger screens */
@@ -35,23 +32,23 @@ body {
 
 
 h2 {
-    font-family: "Lexend", sans-serif;
-    font-size: 18px; /* Smaller title */
+    font-size: 25px; /* Smaller heading size */
     font-weight: 700;
     color: var(--textPurple);
     margin-bottom: 12px; /* Reduced margin */
 }
 
 .name-group {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px; Reduced margin */
+    text-align: left;
 }
 
 .name-group label {
     font-size: 14px; /* Smaller label size */
-    font-weight: 500;
+    font-weight: bold;
     margin-right: 5px;
 }
 
@@ -67,7 +64,6 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 10px; /* Reduced margin */
 }
 
 .checkbox-group {
@@ -76,6 +72,7 @@ h2 {
     gap: 5px; /* Adds some space between the checkboxes */
     align-items: center; /* Vertically center the items */
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .checkbox-group input {
@@ -85,22 +82,32 @@ h2 {
 
 label {
     font-size: 14px; /* Smaller label size */
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 input, select {
-    width: 100%;
-    padding: 6px; /* Reduced padding */
-    border: 1px solid #ccc;
+    width: 95%;
+    font-size: 18px;
+    border: 2px solid var(--textPurple); /* Change border color */
+    padding: 5px;
     border-radius: 5px;
-    font-size: 12px; /* Smaller input text */
+    max-height: fit-content;
 }
+
+/* input {
+    font-size: 18px;
+    border: 2px solid var(--textPurple); 
+    padding: 5px;
+    border-radius: 5px;
+    max-height: fit-content;
+} */
 
 .radio-group {
     display: flex;
     justify-content: space-around;
     width: 50%;
+    color: var(--textPurple);
 }
 
 .radio-group label {
