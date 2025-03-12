@@ -5,6 +5,7 @@
     --textPurple: #968AEC;
     --buttonPurple: #968AEC;
     --buttonHoverPurple: #797DD6;
+    --antiFlashWhite: #f0f0f0;
 }
 
 body {
@@ -12,8 +13,9 @@ body {
     font-family: "Raleway", sans-serif;
 }
 
+
 input {
-    font-size: 18px;
+    font-size: 16px;
     border: 2px solid var(--textPurple); /* Change border color */
     padding: 5px;
     border-radius: 5px;
@@ -39,28 +41,51 @@ input[type="time"] {
 
 
 option {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 select {
-    font-size: 18px;
+    font-size: 16px;
     border: 2px solid var(--textPurple); /* Change border color */
     padding: 5px;
     border-radius: 5px;
 }
 
-.title {
-    text-align: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    color: var(--textPurple);
+.back-button {
+    button{
+        background-color: var(--antiFlashWhite);
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        margin: 0px;
+        padding: 5px;
+        border-radius: 8px;
+    }
 }
+
+hr{
+    border: none;
+    border-top: 1px solid var(--textPurple); /* Adjust thickness and color */
+}
+
+.title{
+    text-align: center;
+    h2{
+        margin: 10px;
+    }
+    font-size: large;
+}
+
 
 .heading {
     text-align: center;
     margin-bottom: 15px;
     margin-top: 30px;
 }
+
 
 .date {
     margin-top: -10px;
@@ -105,6 +130,13 @@ select {
     button {
         width:  90%;
         height: 40px;
+        background-color: var(--buttonPurple);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
     }
 }
 
@@ -117,13 +149,6 @@ select {
 .FormButton button{
     width: 150px;
     height: 40px;
-}
-
-.FormButton .exit{
-    background-color: grey;
-}
-
-button{
     background-color: var(--buttonPurple);
     color: white;
     border: none;
@@ -131,6 +156,10 @@ button{
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
+}
+
+.FormButton .exit{
+    background-color: grey;
 }
 
 label{
