@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-body">
+        <div class="container">
+            <h2>Select Your User Profile</h2>
+            <div class="profile-container" onclick="selectUser('kwong')">
+                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
+                <span>Lau Kwong-Wing</span>
+            </div>
+            <div class="profile-container" onclick="selectUser('leslie')">
+                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
+                <span>Leslie Lau</span>
+            </div>
+            <div class="profile-container" onclick="selectUser('lewis')">
+                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
+                <span>Lewis Lau</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function selectUser(user) {
+            alert("Selected: " + user);
+            // Redirect or store user selection here
+        }
+    </script>
+</body>
+</html>

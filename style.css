@@ -6,17 +6,31 @@
     --backgroundPurple: #6D63BC;
 }
 
+.background-body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--backgroundPurple); /* Set your desired background color */
+    position: fixed; /* Fix the background to cover the entire screen */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure the background stays behind the content */
+}
+
 body {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: 100;
     font-style: normal;
     color: var(--textPurple);
-    margin: 35px;
+    margin: 20px;
     padding: 0;
     flex-direction: column;
     display: flex;
     justify-content: flex-end;
+}
+
+h2 {
+    color: var(--textPurple);
 }
 
 /* Header Styling */
@@ -38,13 +52,16 @@ body {
 }
 
 .container {
-    margin-top: 60px;
-    background: white;
+    margin: 20px; /* Regular margin for body */
     padding: 20px;
+    position: relative;
+    top: 100px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 input {
     padding: 10px;
@@ -387,3 +404,51 @@ button {
 .gallery-image:hover {
     opacity: 0.7;
 }
+
+.profile-container {
+    display:list-item;
+    flex-direction: row;
+    width: 100%;
+    top: 100px;
+    margin-top: 20px; /* Adjusted spacing */
+    overflow-y: auto;
+    max-height: 100px; /* Provides more space */
+    box-sizing: border-box;
+    text-align: center;
+    background-color: var(--textPurple);
+    border-radius: 8px;
+    color: white;
+    font-weight: 300;
+    padding: 10px;
+}
+
+.profile-container svg {
+    width: 50px;
+    height: 50px;
+}
+
+
+.profile-item {
+    display: flex;
+    align-items: center; /* Ensures avatar and text are aligned vertically */
+    justify-content: center; /* Centers the content horizontally */
+    gap: 10px; /* Adds spacing between avatar and text */
+    background-color: rgba(255, 255, 255, 0.2); /* Light overlay for distinction */
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+.profile-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Ensures circular avatars */
+}
+
+.profile-item span {
+    font-size: 18px;
+    font-weight: 400;
+}
+
