@@ -17,6 +17,7 @@ input {
     border: 2px solid var(--textPurple); /* Change border color */
     padding: 5px;
     border-radius: 5px;
+    max-height: fit-content;
 }
 
 input[type="checkbox"]{
@@ -29,6 +30,7 @@ input[type="text"] {
     padding-left: 8px; /* Add some spacing inside */
     padding: 5px;
     border-radius: 5px; /* Optional: Rounded corners */
+    max-width: 200px;
 }
 
 input[type="time"] {
@@ -81,7 +83,7 @@ select {
 }
 
 .FormContainer {
-    padding: 10px;
+    padding-left: 8px;
     padding-top:5px;
     line-height: 2;
 }
