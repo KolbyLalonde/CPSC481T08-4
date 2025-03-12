@@ -240,6 +240,7 @@ button {
     color: gray;
     margin-top: 2px; /* Reduced from 5px */
     white-space: nowrap;
+    font-weight: 500;
 }
 
 /* Message content - better sizing */
@@ -248,10 +249,11 @@ button {
     color: white;
     padding: 6px 10px; /* Reduced from 8px 12px */
     border-radius: 15px;
-    font-size: 13px; /* Reduced from 14px */
+    font-size: 13px; 
     line-height: 1.3; /* Reduced from 1.4 */
     max-width: calc(100% - 40px); /* Ensure message doesn't overflow */
     word-wrap: break-word;
+    font-weight: 500;
 }
 
 /* Input container - ensure it stays at the bottom */
