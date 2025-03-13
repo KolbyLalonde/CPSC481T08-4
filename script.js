@@ -63,6 +63,12 @@ const Keyboard = {
         this.properties.keyboardInputs = document.querySelectorAll(".use-keyboard-input");
         this.properties.keyboardInputs.forEach((element) => {
             element.addEventListener("focus", () => {
+                // Close gallery if it's open when text area is focused
+                const galleryContainer = document.querySelector(".gallery-container");
+                if (galleryContainer && galleryContainer.style.display === "flex") {
+                    galleryContainer.style.display = "none";
+                }
+                
                 this.open(element.value, (currentValue) => {
                     element.value = currentValue;
                 });
@@ -73,8 +79,9 @@ const Keyboard = {
         document.addEventListener("click", (event) => {
             const isKeyboard = event.target.closest(".keyboard");
             const isTextArea = event.target.closest(".text-area");
+            const isGallery = event.target.closest(".gallery-container");
             
-            if (!isKeyboard && !isTextArea) {
+            if (!isKeyboard && !isTextArea && !isGallery) {
                 this.close();
             }
         });
@@ -96,10 +103,10 @@ const Keyboard = {
         // Instead of creating a file input, we'll show the gallery
         const galleryContainer = document.querySelector(".gallery-container");
         if (galleryContainer) {
-            // Hide the keyboard
+            // Hide the keyboard but keep the input container visible
             this.elements.main.classList.add("keyboard--hidden");
             
-            // Show the gallery
+            // Show the gallery without hiding the input container
             galleryContainer.style.display = "flex";
             
             // Reset selection state
@@ -124,7 +131,7 @@ const Keyboard = {
         this.keyElement.innerHTML = iconName ? `<span class="material-icons">${iconName}</span>` : "";
         this.keyElement.addEventListener("click", onclick);
     
-        return this.keyElement;  // Add this return statement
+        return this.keyElement;
     },    
 
     _createKeys() {
@@ -208,7 +215,9 @@ const Keyboard = {
     
         messageElement.innerHTML = ` 
             <div class="avatar-container">
-                <img src="default-avatar.jpg" class="avatar" alt="Lewis">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>                
                 <span class="user-name">Lewis</span>
             </div>
             <div class="message-content">
@@ -255,7 +264,13 @@ const Keyboard = {
         const inputContainer = document.querySelector(".input-container");
         
         textArea.classList.add("active");
-        inputContainer.classList.add("active");  // Add this line
+        inputContainer.classList.add("active");
+        
+        // Hide gallery if it's open
+        const galleryContainer = document.querySelector(".gallery-container");
+        if (galleryContainer) {
+            galleryContainer.style.display = "none";
+        }
         
         this.elements.main.classList.remove("keyboard--hidden");
     },
@@ -268,7 +283,7 @@ const Keyboard = {
         const inputContainer = document.querySelector(".input-container");
         
         textArea.classList.remove("active");
-        inputContainer.classList.remove("active");  // Add this line
+        inputContainer.classList.remove("active");
     },
 
     // Handle keyboard visibility and adjust input container position
@@ -310,7 +325,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
         messageElement.innerHTML = ` 
             <div class="avatar-container">
-                <img src="default-avatar.jpg" class="avatar" alt="Lewis">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
                 <span class="user-name">Lewis</span>
             </div>
             <div class="message-content">
@@ -334,8 +351,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 0);
     }
     
-    
-
     sendButton.addEventListener("click", sendMessage);
 
     textArea.addEventListener("keypress", function (event) {
@@ -344,9 +359,19 @@ document.addEventListener("DOMContentLoaded", function () {
             sendMessage();
         }
     });
+    
+    // Add click event listener to text area to focus and show keyboard/hide gallery
+    textArea.addEventListener("click", function() {
+        const galleryContainer = document.querySelector(".gallery-container");
+        if (galleryContainer && galleryContainer.style.display === "flex") {
+            // Hide gallery and show keyboard instead
+            galleryContainer.style.display = "none";
+            Keyboard.open(textArea.value, (currentValue) => {
+                textArea.value = currentValue;
+            });
+        }
+    });
 });
-
-
 
 // Add this to the existing script.js file
 document.addEventListener("DOMContentLoaded", function () {
@@ -400,6 +425,8 @@ document.addEventListener("DOMContentLoaded", function () {
             
             imageWrapper.appendChild(image);
             imageWrapper.appendChild(checkmark);
+            imageWrapper.appendChild(image);
+            imageWrapper.appendChild(checkmark);
             imagesGrid.appendChild(imageWrapper); // Add to grid instead of directly to container
         });
         
@@ -430,6 +457,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Show the gallery
         galleryContainer.style.display = "flex";
+        
+        // Keep the input container visible - remove any code that hides it
+        // We're not adding 'active' class to it so it stays at the bottom
         
         // Reset selection state
         document.querySelectorAll('.image-wrapper').forEach(wrapper => {
@@ -475,11 +505,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // Handle cancel button click
         if (event.target.classList.contains('gallery-cancel-button')) {
             galleryContainer.style.display = "none";
+            
+            // Focus back on the text area
+            const textArea = document.querySelector(".text-area");
+            if (textArea) {
+                textArea.focus();
+            }
         }
     });
     
     // Function to send the selected image
-    // Modified sendSelectedImage function
     function sendSelectedImage() {
         const selectedWrapper = document.querySelector('.image-wrapper.selected');
         if (!selectedWrapper) return;
@@ -494,7 +529,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         messageElement.innerHTML = ` 
             <div class="avatar-container">
-                <img src="default-avatar.jpg" class="avatar" alt="Lewis">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
                 <span class="user-name">Lewis</span>
             </div>
             <div class="message-content">
@@ -505,12 +542,40 @@ document.addEventListener("DOMContentLoaded", function () {
         chatContainer.appendChild(messageElement);
         chatContainer.scrollTop = chatContainer.scrollHeight;
         
-        // Clear selection but keep the gallery open
+        // Hide the gallery after sending
+        galleryContainer.style.display = "none";
+        
+        // Clear selection
         selectedWrapper.classList.remove('selected');
         
         // Disable send button again
         const sendButton = document.querySelector('.gallery-send-button');
         if (sendButton) sendButton.disabled = true;
+        
+        // Focus back on the text area
+        const textArea = document.querySelector(".text-area");
+        if (textArea) {
+            setTimeout(() => {
+                textArea.focus();
+            }, 0);
+        }
+    }
+    
+    // Ensure the text area stays clickable even when gallery is open
+    const textArea = document.querySelector(".text-area");
+    if (textArea) {
+        textArea.addEventListener("click", function() {
+            if (galleryContainer.style.display === "flex") {
+                // Hide gallery and show keyboard when text area is clicked
+                galleryContainer.style.display = "none";
+                
+                // Show keyboard
+                const keyboard = document.querySelector(".keyboard");
+                keyboard.classList.remove("keyboard--hidden");
+                
+                // Focus on text area
+                this.focus();
+            }
+        });
     }
 });
-
