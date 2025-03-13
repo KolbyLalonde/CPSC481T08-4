@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --antiFlashWhite: #f0f0f0;
+}
+
+body {
+    font-size: 18px;
+    color: var(--antiFlashWhite);
+    font-family: "Raleway", sans-serif;
+    background-color: dimgrey;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+}
+
+.phone-icon {
+    margin-right: 20px; /* Space between icon and text */
+    margin-left: 10px;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 350px;
+    border: 5px solid var(--buttonHoverPurple);
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.icon-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid var(--buttonHoverPurple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 130px;
+    margin-top: 50px;
+}
+
+button{
+    color: white;
+    background-color: transparent;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+}
