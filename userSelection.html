@@ -4,31 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Selection</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="userSelection.css">
 </head>
 <body>
-    <div class="background-body">
-        <div class="container">
-            <h2>Select Your User Profile</h2>
-            <div class="profile-container" onclick="selectUser('kwong')">
-                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
-                <span>Lau Kwong-Wing</span>
-            </div>
-            <div class="profile-container" onclick="selectUser('leslie')">
-                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
-                <span>Leslie Lau</span>
-            </div>
-            <div class="profile-container" onclick="selectUser('lewis')">
-                <img src="default-avatar.jpg" alt="User Icon" class="avatar">
-                <span>Lewis Lau</span>
-            </div>
-        </div>
+    <div class="back-button">
+        <button class = "back" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="back" width="20" height="20">
+                <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+            </svg>
+        </button>
     </div>
-    <script>
-        function selectUser(user) {
-            alert("Selected: " + user);
-            // Redirect or store user selection here
-        }
-    </script>
+    <h2 class="heading">Select Your User Profile</h2>
+    <div class="members">
+        <button>
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+            </div>
+            <h2>Lau Kwong-wing</h2>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="phone" width="20" height="20">
+            </svg>
+            
+            
+        </button>
+        
+        <button>
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+            </div>
+            <h2>Leslie Lau</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="phone" width="20" height="20">
+            </svg>
+            
+        </button>
+        
+        <button>
+            <div class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.3" stroke="var(--textPurple)" class="icon" width="30" height="30">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />                </svg>
+            </div>
+            <h2>Lewis Lau</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="phone" width="20" height="20">
+            </svg>
+            
+        </button>
+    </div>
 </body>
-</html>

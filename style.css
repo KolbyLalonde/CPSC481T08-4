@@ -30,7 +30,7 @@ body {
 }
 
 h2 {
-    color: var(--textPurple);
+    color: white;
 }
 
 /* Header Styling */
@@ -370,12 +370,21 @@ button {
     background: var(--buttonHoverPurple);
 }
 
-.back-arrow {
-    font-size: 24px; /* Adjust size */
-    margin-right: 15px; /* Space between arrow and text */
-    cursor: pointer; /* Make it clickable */
-    position: absolute;
-    left: 15px; /* Position on the left side */
+.back-button {
+    button{
+        background-color: var(--backgroundPurple);
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        margin: 10px;
+        padding: 5px;
+        position: fixed;
+        left: 1px;
+        top: 1px;
+    }
 }
 
 /* Gallery Styles */

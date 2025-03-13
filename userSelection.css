@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --antiFlashWhite: #f0f0f0;
+    --backgroundPurple: #6D63BC;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+}
+
+.back-button {
+    button{
+        background-color: var(--antiFlashWhite);
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        margin: 0px;
+        padding: 5px;
+    }
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.members {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+
+.icon-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2.5px solid var(--textPurple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -20px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 2px solid var(--textPurple);
+    cursor: pointer;
+    border-radius: 8px;
+}
