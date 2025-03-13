@@ -13,10 +13,15 @@ body {
     font-size: 18px;
 }
 
-.back-button {
+.exit-button {
+    p{
+        margin: 0px;
+        margin-left: 5px;
+        color: var(--textPurple);
+    }
     button{
         background-color: var(--antiFlashWhite);
-        width: 30px;
+        width: 100px;
         border: none;
         cursor: pointer;
         display: flex;
