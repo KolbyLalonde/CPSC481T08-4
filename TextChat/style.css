@@ -245,7 +245,7 @@ button {
 
 /* Message content - better sizing */
 .message-content {
-    background: var(--textPurple);
+    background: var(--backgroundPurple);
     color: white;
     padding: 6px 10px; /* Reduced from 8px 12px */
     border-radius: 15px;
@@ -280,7 +280,7 @@ button {
     transform: translateY(-50%);
     border-width: 6px;
     border-style: solid;
-    border-color: transparent var(--textPurple) transparent transparent;
+    border-color: transparent var(--backgroundPurple) transparent transparent;
 }
 
 /* Different styling for right-side messages (Lewis) */
@@ -295,13 +295,13 @@ button {
 }
 
 .chat-message.right .message-content {
-    background: var(--textPurple);
+    background: var(--backgroundPurple);
 }
 
 .chat-message.right .message-content::before {
     left: auto;
     right: 38px;
-    border-color: transparent transparent transparent var(--textPurple);
+    border-color: transparent transparent transparent var(--backgroundPurple);
 }
 
 /* Input Container */
@@ -316,7 +316,7 @@ button {
     transition: bottom 0.3s ease-out;
     z-index: 10;
     background-color: var(--textPurple);
-    padding: 10px; /* Ensures spacing inside */
+    padding:15px; /* Ensures spacing inside */
     box-sizing: border-box; /* Prevents width overflow */
     margin: 0; /* Ensures no unexpected margins */
 }
@@ -497,12 +497,93 @@ button {
     color: #333;
 }
 
-/* Shared images in chat */
-.shared-image {
-    max-width: 100%;
-    max-height: 200px;
+/* Image viewer overlay */
+.image-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-viewer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-viewer-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-viewer-img {
+    max-width: 90%;
+    object-fit: contain;
     border-radius: 8px;
-    margin: 5px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.image-viewer-overlay.active .image-viewer-img {
+    transform: scale(1);
+}
+
+.image-viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1001;
+}
+
+.image-viewer-close:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Prevent scrolling when viewing image */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Make shared images in chat appear clickable */
+.shared-image {
+    max-width: 100px; /* Adjust width as needed */
+    max-height: 100px; /* Adjust height as needed */
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.shared-image:hover {
+    opacity: 0.9;
+}
+
+/* Add a subtle animation to indicate tappability on mobile */
+@media (hover: none) {
+    .shared-image:active {
+        transform: scale(0.98);
+    }
 }
 
 .profile-container {
