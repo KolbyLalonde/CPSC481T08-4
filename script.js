@@ -579,3 +579,71 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Add this to the end of your existing script.js file
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Create image viewer modal elements
+    const imageViewerOverlay = document.createElement("div");
+    imageViewerOverlay.className = "image-viewer-overlay";
+    
+    const imageViewerContainer = document.createElement("div");
+    imageViewerContainer.className = "image-viewer-container";
+    
+    const imageElement = document.createElement("img");
+    imageElement.className = "image-viewer-img";
+    
+    const closeButton = document.createElement("button");
+    closeButton.className = "image-viewer-close";
+    closeButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+        </svg>
+    `;
+    
+    // Assemble the viewer components
+    imageViewerContainer.appendChild(imageElement);
+    imageViewerContainer.appendChild(closeButton);
+    imageViewerOverlay.appendChild(imageViewerContainer);
+    document.body.appendChild(imageViewerOverlay);
+    
+    // Delegate event listener for all shared images in the chat
+    document.addEventListener("click", function(event) {
+        // Check if the clicked element is an image in a chat message
+        if (event.target.classList.contains("shared-image")) {
+            const imageSrc = event.target.src;
+            
+            // Set the image source in the viewer
+            imageElement.src = imageSrc;
+            
+            // Show the overlay
+            imageViewerOverlay.classList.add("active");
+            document.body.classList.add("no-scroll");
+        }
+        
+        // Close button functionality
+        if (event.target.closest(".image-viewer-close") || 
+            event.target.classList.contains("image-viewer-overlay")) {
+            imageViewerOverlay.classList.remove("active");
+            document.body.classList.remove("no-scroll");
+        }
+    });
+    
+    // Add swipe to close functionality for mobile
+    let touchStartY = 0;
+    
+    imageViewerOverlay.addEventListener("touchstart", function(e) {
+        touchStartY = e.touches[0].clientY;
+    }, {passive: true});
+    
+    imageViewerOverlay.addEventListener("touchmove", function(e) {
+        const touchY = e.touches[0].clientY;
+        const diff = touchY - touchStartY;
+        
+        // If swiped down more than 50px, close the viewer
+        if (diff > 50) {
+            imageViewerOverlay.classList.remove("active");
+            document.body.classList.remove("no-scroll");
+        }
+    }, {passive: true});
+});
