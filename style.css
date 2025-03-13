@@ -392,28 +392,117 @@ button {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     background-color: white;
     display: none;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
     padding: 10px;
     box-sizing: border-box;
-    z-index: 20; /* Ensure it's above the keyboard */
-    display: flex;
-    justify-content: flex-start;
+    z-index: 20;
+    border-top: 1px solid #ccc;
+    max-height: 315px; /* Adjusted for better view on smaller screens */
+    overflow-y: auto;
 }
 
-.gallery-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+.gallery-container .images-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 8px; /* Small gap between images */
+    margin-bottom: 10px;
+}
+
+/* Adjust image wrapper size for 3-column layout on 375px width screen */
+.image-wrapper {
+    position: relative;
+    width: 100%; /* Take full width of grid cell */
+    aspect-ratio: 1/1; /* Keep images square */
     border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Selected Image Styling */
+.image-wrapper.selected {
+    border-color: var(--buttonPurple);
+}
+
+/* Gallery Images */
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     cursor: pointer;
 }
 
-.gallery-image:hover {
-    opacity: 0.7;
+/* Checkmark Icon */
+.image-checkmark {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--buttonPurple);
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Show checkmark when selected */
+.image-wrapper.selected .image-checkmark {
+    display: flex;
+}
+
+/* Image hover effect */
+.image-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* Gallery Controls */
+.gallery-send-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--textPurple);
+    width: 100vw;
+    left: 0;
+    right: 0;
+    margin: 0 !important;
+    box-sizing: border-box;
+    z-index: 21; /* Above the gallery but below other elements */
+}
+
+/* Gallery Buttons */
+.gallery-send-button, 
+.gallery-cancel-button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+.gallery-send-button {
+    background-color: var(--backgroundPurple);
+    color: white;
+}
+
+.gallery-cancel-button {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* Shared images in chat */
+.shared-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin: 5px 0;
 }
 
 .profile-container {

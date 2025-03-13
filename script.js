@@ -93,16 +93,24 @@ const Keyboard = {
     },
     
     openFileSelector() {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*, video/*"; // Accept images and videos
-        input.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                alert(`Selected file: ${file.name}`);
-            }
-        });
-        input.click();
+        // Instead of creating a file input, we'll show the gallery
+        const galleryContainer = document.querySelector(".gallery-container");
+        if (galleryContainer) {
+            // Hide the keyboard
+            this.elements.main.classList.add("keyboard--hidden");
+            
+            // Show the gallery
+            galleryContainer.style.display = "flex";
+            
+            // Reset selection state
+            document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+                wrapper.classList.remove('selected');
+            });
+            
+            // Disable send button initially
+            const sendButton = document.querySelector('.gallery-send-button');
+            if (sendButton) sendButton.disabled = true;
+        }
     },
     
 
@@ -338,84 +346,171 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const textArea = document.querySelector(".text-area");
-    const sendButton = document.querySelector(".send-button");
-    const chatContainer = document.querySelector(".chat-container");
-    const uploadMediaButton = document.querySelector(".upload-media-button");
-    const galleryContainer = document.querySelector(".gallery-container");
-    const keyboardContainer = document.querySelector(".keyboard");
 
-    // Handle sending text messages
-    function sendMessage(messageText) {
+
+// Add this to the existing script.js file
+document.addEventListener("DOMContentLoaded", function () {
+    // Keep existing code and add the following:
+    
+    // Reference the gallery container (add this if it doesn't exist yet)
+    const galleryContainer = document.querySelector(".gallery-container") || createGalleryContainer();
+    
+    // Function to create gallery container if it doesn't exist
+    function createGalleryContainer() {
+        const container = document.createElement("div");
+        container.className = "gallery-container";
+        document.body.appendChild(container);
+        
+        // Create a grid container for images
+        const imagesGrid = document.createElement("div");
+        imagesGrid.className = "images-grid";
+        container.appendChild(imagesGrid);
+        
+        // Add sample images to the gallery
+        const imageUrls = [
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg", 
+            "default-avatar.jpg"
+        ];
+        
+        imageUrls.forEach(url => {
+            const imageWrapper = document.createElement("div");
+            imageWrapper.className = "image-wrapper";
+            
+            const image = document.createElement("img");
+            image.src = url;
+            image.className = "gallery-image";
+            image.alt = "Gallery image";
+            
+            const checkmark = document.createElement("div");
+            checkmark.className = "image-checkmark";
+            checkmark.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+            `;
+            
+            imageWrapper.appendChild(image);
+            imageWrapper.appendChild(checkmark);
+            imagesGrid.appendChild(imageWrapper); // Add to grid instead of directly to container
+        });
+        
+        // Add send button for selected images
+        const sendButtonContainer = document.createElement("div");
+        sendButtonContainer.className = "gallery-send-container";
+        
+        const cancelButton = document.createElement("button");
+        cancelButton.className = "gallery-cancel-button";
+        cancelButton.textContent = "Cancel";
+        
+        const sendButton = document.createElement("button");
+        sendButton.className = "gallery-send-button";
+        sendButton.textContent = "Send";
+        sendButton.disabled = true;
+        
+        sendButtonContainer.appendChild(cancelButton);
+        sendButtonContainer.appendChild(sendButton);
+        container.appendChild(sendButtonContainer);
+        
+        return container;
+    }
+    
+    // Handle Media Button Click
+    function handleMediaButtonClick() {
+        const keyboard = document.querySelector(".keyboard");
+        keyboard.classList.add("keyboard--hidden");
+        
+        // Show the gallery
+        galleryContainer.style.display = "flex";
+        
+        // Reset selection state
+        document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+            wrapper.classList.remove('selected');
+        });
+        
+        // Disable send button initially
+        const sendButton = document.querySelector('.gallery-send-button');
+        if (sendButton) sendButton.disabled = true;
+    }
+    
+    // Add click handler to the Upload Media button
+    const uploadButtons = document.querySelectorAll(".keyboard__button");
+    uploadButtons.forEach(button => {
+        if (button.textContent === "Upload Media") {
+            button.addEventListener("click", handleMediaButtonClick);
+        }
+    });
+    
+    // Add click handlers to image wrappers
+    document.addEventListener('click', function(event) {
+        // Handle image selection
+        if (event.target.classList.contains('gallery-image')) {
+            const wrapper = event.target.closest('.image-wrapper');
+            
+            // Toggle selection on the clicked image
+            document.querySelectorAll('.image-wrapper').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            wrapper.classList.add('selected');
+            
+            // Enable the send button
+            const sendButton = document.querySelector('.gallery-send-button');
+            if (sendButton) sendButton.disabled = false;
+        }
+        
+        // Handle send button click
+        if (event.target.classList.contains('gallery-send-button') && !event.target.disabled) {
+            sendSelectedImage();
+        }
+        
+        // Handle cancel button click
+        if (event.target.classList.contains('gallery-cancel-button')) {
+            galleryContainer.style.display = "none";
+        }
+    });
+    
+    // Function to send the selected image
+    // Modified sendSelectedImage function
+    function sendSelectedImage() {
+        const selectedWrapper = document.querySelector('.image-wrapper.selected');
+        if (!selectedWrapper) return;
+        
+        const selectedImage = selectedWrapper.querySelector('.gallery-image');
+        const imageUrl = selectedImage.src;
+        
+        // Create and add the message with the image
+        const chatContainer = document.querySelector(".chat-container");
         const messageElement = document.createElement("div");
         messageElement.classList.add("chat-message", "right");
-
+        
         messageElement.innerHTML = ` 
             <div class="avatar-container">
                 <img src="default-avatar.jpg" class="avatar" alt="Lewis">
                 <span class="user-name">Lewis</span>
             </div>
             <div class="message-content">
-                <p>${messageText}</p>
+                <img src="${imageUrl}" alt="Shared image" class="shared-image">
             </div>
         `;
-
+        
         chatContainer.appendChild(messageElement);
         chatContainer.scrollTop = chatContainer.scrollHeight;
+        
+        // Clear selection but keep the gallery open
+        selectedWrapper.classList.remove('selected');
+        
+        // Disable send button again
+        const sendButton = document.querySelector('.gallery-send-button');
+        if (sendButton) sendButton.disabled = true;
     }
-
-    // Send text when enter is pressed
-    textArea.addEventListener("keypress", function (event) {
-        if (event.key === "Enter" && !event.shiftKey) {
-            event.preventDefault();
-            sendMessage(textArea.value.trim());
-            textArea.value = ""; // Clear input after sending
-        }
-    });
-
-    // Send button click handler
-    sendButton.addEventListener("click", function () {
-        const messageText = textArea.value.trim();
-        if (messageText !== "") {
-            sendMessage(messageText);
-            textArea.value = ""; // Clear input after sending
-        }
-    });
-
-    // Handle media upload button click
-    uploadMediaButton.addEventListener("click", function () {
-        // Hide the keyboard if it's visible
-        keyboardContainer.classList.add("keyboard--hidden");
-
-        // Show the image gallery
-        galleryContainer.style.display = "flex"; // Show the gallery
-    });
-
-    // Handle selecting an image from the gallery
-    const galleryImages = document.querySelectorAll(".gallery-image");
-    galleryImages.forEach((image) => {
-        image.addEventListener("click", function () {
-            const imageUrl = image.src; // Get the selected image's URL
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("chat-message", "right");
-
-            messageElement.innerHTML = ` 
-                <div class="avatar-container">
-                    <img src="default-avatar.jpg" class="avatar" alt="Lewis">
-                    <span class="user-name">Lewis</span>
-                </div>
-                <div class="message-content">
-                    <img src="${imageUrl}" alt="Uploaded Image" class="uploaded-image">
-                </div>
-            `;
-
-            chatContainer.appendChild(messageElement);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-
-            // Hide the gallery after selection
-            galleryContainer.style.display = "none";
-        });
-    });
 });
 
