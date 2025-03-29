@@ -29,7 +29,7 @@ body {
 /* Main Container */
 .container {
     background: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -55,7 +55,7 @@ body {
 /* GenLink Title */
 .title {
     font-family: "Lexend", sans-serif; /* Use Lexend for the title */
-    font-size: 24px; /* Slightly smaller title */
+    font-size: 48px; /* Slightly smaller title */
     font-weight: 700;
     color: var(--textPurple);
     margin-bottom: 5px;
@@ -68,6 +68,27 @@ body {
     font-weight: 500;
     color: var(--textPurple);
     margin-bottom: 15px; /* Reduced margin */
+}
+
+.help-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: gray;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.setup-container {
+    display: flex;
+    align-items: center;
 }
 
 /* Input Fields */
@@ -93,7 +114,8 @@ button {
     font-size: 14px; /* Smaller button text size */
     cursor: pointer;
     transition: background 0.3s;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 30px;
     box-sizing: border-box; /* Ensures padding is included in width */
 }
 
@@ -109,4 +131,31 @@ button:hover {
     transform: translateX(-50%);
     width: 100%;
     text-align: center;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px;
+}
+.close {
+    color: black;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
 }
