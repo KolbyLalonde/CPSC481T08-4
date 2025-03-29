@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenLink - Family Connection</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Box -->
+        <div class="logo-box">
+            <img src="logo.png" alt="GenLink Logo">
+        </div>
+
+        <!-- Company Name -->
+        <h1 class="title">GenLink</h1>
+
+        <h2>Join Family Group</h2>
+
+        <!-- Form -->
+        <form onsubmit="redirectToFamilyHome(event)">
+            <input type="text" id="joinCode" name="join_code" placeholder="Enter Join Code" required>
+            <button type="submit" class="join-btn">Join Family</button>
+        </form>
+            <!-- Modal -->
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+
+        </div>
+            <!-- Users looking to set up a new family group -->
+            <div class="setup-group">
+                <h2>Create Family Group </h2>
+                <form action="setup.html" method="POST">
+                    <button type="submit" class="setup-btn" id="SetupParent">Parent (Admin)</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- <button class="help-btn" onclick="showHelpModal()">?</button> -->
+        
+        <!-- Help Modal -->
+        <div id="helpModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeHelpModal()">&times;</span>
+                <p>Setting up a new family group allows you to be the administrator of your family's connections. You'll have control over adding members and managing family details.</p>
+            </div>
+        </div>
+
+        <script>
+            function showHelpModal() {
+                document.getElementById("helpModal").style.display = "block";
+            }
+
+            function closeHelpModal() {
+                document.getElementById("helpModal").style.display = "none";
+            }
+        </script>
+    </div>
+</body>
+</html>
