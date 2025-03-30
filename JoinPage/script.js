@@ -19,3 +19,27 @@ function showModal(message) {
 function closeModal() {
     document.getElementById("errorModal").style.display = "none";
 }
+
+// Close the confirmation modal
+function closeConfirmationModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+
+// Close the confirmation modal
+function closeConfirmationModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+// Handle the confirmation action
+function confirmSetup() {
+    // You can add any additional logic for proceeding after confirmation
+    alert('You have confirmed to set up the family group as Parent (Admin).');
+    closeConfirmationModal();  // Close the modal after confirmation
+}
+
+// Attach the confirmation modal to the "Parent (Admin)" button
+document.getElementById("SetupParent").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent form submission
+    showConfirmationModal(); // Show the confirmation modal
+});

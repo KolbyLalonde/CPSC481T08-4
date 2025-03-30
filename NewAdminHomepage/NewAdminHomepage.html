@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator Homepage</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -21,20 +22,44 @@
         <!-- Family Member Section -->
         <div class="family-member-field">
             <h3>Family Members List</h3>
-            <ul class="family-member-list">
-                <div class="empty-space"></div> <!-- Empty white space -->
+            <ul id="family-member-list" class="family-member-list">
+                <!-- Family members will be displayed here -->
             </ul>
         </div>
 
         <hr>
 
-        <!-- Add New Family Member Button -->
-        <button class="button">Add New Family Member</button>
-    </div>
+    <!-- Add New Family Member Button -->
+    <button class="button" onclick="window.location.href='add-family-member.html'">Add New Family Member</button>
+
     <!-- Footer Tab Bar -->
     <div class="footer-tab-bar">
-        <button class="tab-button active" id="admin-tab">Admin Tab</button>
-        <button class="tab-button" id="home-tab">Home Tab</button>
+        <button class="tab-button active" id="admin-tab" onclick="showConfirmationModal()">Complete Setup</button>
     </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmationModal()">&times;</span>
+            <p>Please confirm that you have added all family member accounts.</p>
+            <button onclick="closeConfirmationModal()">Cancel</button>
+            <button onclick="confirmSetup()">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal for Join Code -->
+    <div id="joinCodeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeJoinCodeModal()">&times;</span>
+            <p>Please make sure to save the join code:</p>
+            <p id="joinCodeDisplay" style="font-weight: bold; font-size: 20px;">X67DF42W</p>
+            <p>Are you sure you have saved it?</p>
+            <button class="red-btn" onclick="closeJoinCodeModal()">Cancel</button>
+            <button class="blue-btn" onclick="copyJoinCode()">Copy Code</button>
+            <button class="green-btn" onclick="confirmJoinCode()">Yes, Continue</button>
+        </div>
+    </div>
+
+
 </body>
 </html>
