@@ -45,10 +45,19 @@ const Keyboard = {
         uploadButton.addEventListener("click", () => {
             this.openFileSelector();
         });
+
+        // Create "Suggest Message" button
+        const AIButton = document.createElement("button");
+        AIButton.textContent = "Suggest Message";
+        AIButton.classList.add("keyboard__button");
+        AIButton.addEventListener("click", () => {
+            this.AIMessage();
+        });
     
         // Append buttons
         buttonsContainer.appendChild(cameraButton);
         buttonsContainer.appendChild(uploadButton);
+        buttonsContainer.appendChild(AIButton);
     
         // Create keys container
         this.elements.keysContainer = document.createElement("div");
@@ -118,6 +127,54 @@ const Keyboard = {
             const sendButton = document.querySelector('.gallery-send-button');
             if (sendButton) sendButton.disabled = true;
         }
+    },
+
+    AIMessage() {
+        const keyboard = document.querySelector(".keyboard");
+        const textArea = document.querySelector(".text-area.use-keyboard-input");
+        
+        // Hide the keyboard when AI suggestions are shown
+        if (keyboard) {
+            keyboard.classList.add("keyboard--hidden");
+        }
+
+        let aiContainer = document.querySelector(".ai-container");
+        if (!aiContainer) {
+            aiContainer = document.createElement("div");
+            aiContainer.classList.add("ai-container");
+            document.body.appendChild(aiContainer);
+        }
+        aiContainer.innerHTML = ""; // Clear previous messages
+        aiContainer.style.display = "flex";
+        
+        const presetMessages = [
+            "How are you?",
+            "Do you have time for a call right now?",
+            "I miss you!",
+            "Did you eat yet?",
+            "How's everyone?"
+        ];
+
+        const aiMenu = document.createElement("div");
+        aiMenu.classList.add("menu");
+
+        presetMessages.forEach(message => {
+            const aiOption = document.createElement("div");
+            aiOption.textContent = message;
+            aiOption.classList.add("ai-message-item");
+            aiOption.addEventListener("click", function () {
+                if (textArea) {
+                    textArea.value = message;
+                }
+                aiContainer.style.display = "none";
+                
+                // Show the keyboard again after selection
+                if (keyboard) {
+                    keyboard.classList.remove("keyboard--hidden");
+                }
+            });
+            aiContainer.appendChild(aiOption);
+        });
     },
     
 
