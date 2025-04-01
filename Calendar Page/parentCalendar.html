@@ -6,6 +6,7 @@
     <title>Calendar</title>
     <!-- <link rel="stylesheet" href="../style.css"> -->
     <link rel="stylesheet" href="calendar.css">
+    <script src="calendar.js" defer></script>
 </head>
 <body>
     <div class="header"  onclick="window.location.href='/CPSC481T08-4/FamilyHomePage/parentHome.html'">
@@ -19,21 +20,10 @@
         </div>
     </div>
     <hr>
-    <div class = container>
-        <div class="date">
-            <p><strong>Thursday, January 13</strong></p>
-            <p><strong>9:30 PM</strong></p>
-        </div>
-        <div class="event">
-            <p><strong>Event Name:</strong> Leslie's 8th year old Birthday</p>
-            <p><strong>Members:</strong> Leslie, Kwong-wing, Lewis</p>
-            <p><strong>Location:</strong> Home</p>
-            <p><strong>Meeting Type:</strong> Virtual</p>
-        </div>
-        <hr>
+    <div class = container id="eventDetails">
     </div>
     <div class="button">
-        <button type="submit">Create New Event</button>
+        <button onclick = "window.location.href='new event.html'">Create New Event</button>
     </div>
 </body>
 </html>

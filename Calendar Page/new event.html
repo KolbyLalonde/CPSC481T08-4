@@ -6,13 +6,14 @@
     <title>Calendar</title>
     <!-- <link rel="stylesheet" href="../style.css"> -->
     <link rel="stylesheet" href="calendar.css">
+    <script src="newEventScript.js" defer></script>
 </head>
 <body>
     <h2 class="heading"> Create New Event</h2>
     <div class="FormContainer">
         <form>
             <label for="event_name">Event Name:</label>
-            <input type = "text" id="event_name">
+            <input type = "text" id="event_name" required>
             <p></p>
             <label for="members">Members:</label>
             <div class = "members">
@@ -27,11 +28,11 @@
             </div>
             <p></p>
             <label for="date">Date:</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" required> 
             <br>
             <br>
             <label for="time">Time:</label>
-            <input type="time" id="time" name="time">
+            <input type="time" id="time" name="time" required>
             <br>
             <br>
             <label for="meeting_type">Meeting Type:</label>
@@ -42,14 +43,14 @@
             <br>
             <br>
             <label for="location">Location:</label>
-            <input type="text" id="location" name="location">
+            <input type="text" id="location" name="location" required>
             <br>
             <br>
         </form>
     </div>
     <div class="FormButton">
-        <button class = "exit" type="submit">Exit</button>
-        <button type="submit">Create</button>
+        <button onclick = "exit()" class="exit" type="button">Exit</button>
+        <button type="button" id="createButton">Create</button>
     </div>
 </body>
 </html>
