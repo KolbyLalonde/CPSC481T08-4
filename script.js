@@ -169,17 +169,15 @@ const Keyboard = {
             aiOption.textContent = message;
             aiOption.classList.add("ai-message-item");
             aiOption.style.padding = "10px";
-            aiOption.style.background = "#ddd";
+            aiOption.style.background = "#6D63BC";
             aiOption.style.textAlign = "center";
             aiOption.style.cursor = "pointer";
             aiOption.style.transition = "background 0.3s";
-            
-            aiOption.addEventListener("mouseover", () => {
-                aiOption.style.background = "#ccc";
-            });
-            aiOption.addEventListener("mouseout", () => {
-                aiOption.style.background = "#ddd";
-            });
+            aiOption.style.borderRadius = "10px";
+            aiOption.style.color = "#fff";
+            aiOption.style.display = "flex";
+            aiOption.style.justifyContent = "center";
+            aiOption.style.alignItems = "center";
             
             aiOption.addEventListener("click", function () {
                 if (textArea) {
