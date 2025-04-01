@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Member Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<div class="container">
+    <h2>Edit Family Member Profile</h2>
+    
+    <div class="name-group">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="first-name" value="Leslie">
+    </div>
+
+    <div class="name-group">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" value="Lau">
+    </div>
+
+    <div class="name-group">
+        <label for="restrictions">User Access:</label>
+    </div>
+
+    <div class="checkbox-group">
+        <div class="checkbox-item">
+            <input type="checkbox" id="phone-call" name="restrictions" value="phone-call">
+            <label for="phone-call">Phone Call</label>
+        </div>
+    
+        <div class="checkbox-item">
+            <input type="checkbox" id="video-call" name="restrictions" value="video-call" checked>
+            <label for="video-call">Video Call</label>
+        </div>
+    
+        <div class="checkbox-item">
+            <input type="checkbox" id="text-message" name="restrictions" value="text-message">
+            <label for="text-message">Text Message</label>
+        </div>
+    
+        <div class="checkbox-item">
+            <input type="checkbox" id="schedule-events" name="restrictions" value="schedule-events" checked>
+            <label for="schedule-events">Schedule Events</label>
+        </div>
+    
+        <div class="checkbox-item">
+            <input type="checkbox" id="admin-access" name="restrictions" value="admin-access" checked>
+            <label for="admin-access">User Administration</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="text-size">Text Size:</label>
+        <input type="range" id="text-size" name="text-size" min="1" max="10" value="3">
+    </div>
+    
+    <div class="form-group">
+        <label for="brightness">Audio Volume:</label>
+        <input type="range" id="brightness" name="brightness" min="1" max="10" value="3">
+    </div>
+    
+    <div class="form-group">
+        <label for="brightness">Brightness:</label>
+        <input type="range" id="brightness" name="brightness" min="1" max="10" value="6">
+    </div>
+
+    <div class="buttons">
+        <button class="exit">Exit</button>
+        <button class="save">Save</button>
+    </div>
+</div>
