@@ -132,36 +132,55 @@ const Keyboard = {
     AIMessage() {
         const keyboard = document.querySelector(".keyboard");
         const textArea = document.querySelector(".text-area.use-keyboard-input");
+        let aiContainer = document.querySelector(".ai-container");
         
         // Hide the keyboard when AI suggestions are shown
         if (keyboard) {
             keyboard.classList.add("keyboard--hidden");
         }
-
-        let aiContainer = document.querySelector(".ai-container");
+        
         if (!aiContainer) {
             aiContainer = document.createElement("div");
             aiContainer.classList.add("ai-container");
             document.body.appendChild(aiContainer);
         }
-        aiContainer.innerHTML = ""; // Clear previous messages
-        aiContainer.style.display = "flex";
+        
+        aiContainer.innerHTML = "";
+        aiContainer.style.display = "grid";
+        aiContainer.style.gridTemplateColumns = "repeat(auto-fit, minmax(100px, 1fr))";
+        aiContainer.style.gap = "10px";
+        aiContainer.style.padding = "10px";
+        aiContainer.style.background = "#fff";
+        aiContainer.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
+        aiContainer.style.height = "315px";
         
         const presetMessages = [
+            "Hello!",
             "How are you?",
-            "Do you have time for a call right now?",
-            "I miss you!",
+            "Good morning!",
+            "Do you have time to call right now?",
+            "I miss you",
             "Did you eat yet?",
             "How's everyone?"
         ];
-
-        const aiMenu = document.createElement("div");
-        aiMenu.classList.add("menu");
-
+    
         presetMessages.forEach(message => {
             const aiOption = document.createElement("div");
             aiOption.textContent = message;
             aiOption.classList.add("ai-message-item");
+            aiOption.style.padding = "10px";
+            aiOption.style.background = "#ddd";
+            aiOption.style.textAlign = "center";
+            aiOption.style.cursor = "pointer";
+            aiOption.style.transition = "background 0.3s";
+            
+            aiOption.addEventListener("mouseover", () => {
+                aiOption.style.background = "#ccc";
+            });
+            aiOption.addEventListener("mouseout", () => {
+                aiOption.style.background = "#ddd";
+            });
+            
             aiOption.addEventListener("click", function () {
                 if (textArea) {
                     textArea.value = message;
