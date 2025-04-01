@@ -45,10 +45,19 @@ const Keyboard = {
         uploadButton.addEventListener("click", () => {
             this.openFileSelector();
         });
+
+        // Create "Suggest Message" button
+        const AIButton = document.createElement("button");
+        AIButton.textContent = "Suggest Message";
+        AIButton.classList.add("keyboard__button");
+        AIButton.addEventListener("click", () => {
+            this.AIMessage();
+        });
     
         // Append buttons
         buttonsContainer.appendChild(cameraButton);
         buttonsContainer.appendChild(uploadButton);
+        buttonsContainer.appendChild(AIButton);
     
         // Create keys container
         this.elements.keysContainer = document.createElement("div");
@@ -118,6 +127,71 @@ const Keyboard = {
             const sendButton = document.querySelector('.gallery-send-button');
             if (sendButton) sendButton.disabled = true;
         }
+    },
+
+    AIMessage() {
+        const keyboard = document.querySelector(".keyboard");
+        const textArea = document.querySelector(".text-area.use-keyboard-input");
+        let aiContainer = document.querySelector(".ai-container");
+        
+        // Hide the keyboard when AI suggestions are shown
+        if (keyboard) {
+            keyboard.classList.add("keyboard--hidden");
+        }
+        
+        if (!aiContainer) {
+            aiContainer = document.createElement("div");
+            aiContainer.classList.add("ai-container");
+            document.body.appendChild(aiContainer);
+        }
+        
+        aiContainer.innerHTML = "";
+        aiContainer.style.display = "grid";
+        aiContainer.style.gridTemplateColumns = "repeat(auto-fit, minmax(100px, 1fr))";
+        aiContainer.style.gap = "10px";
+        aiContainer.style.padding = "10px";
+        aiContainer.style.background = "#fff";
+        aiContainer.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
+        aiContainer.style.height = "315px";
+        
+        const presetMessages = [
+            "Hello!",
+            "How are you?",
+            "Good morning!",
+            "Do you have time to call right now?",
+            "I miss you",
+            "Did you eat yet?",
+            "How's everyone?"
+        ];
+    
+        presetMessages.forEach(message => {
+            const aiOption = document.createElement("div");
+            aiOption.textContent = message;
+            aiOption.classList.add("ai-message-item");
+            aiOption.style.padding = "10px";
+            aiOption.style.background = "#6D63BC";
+            aiOption.style.textAlign = "center";
+            aiOption.style.cursor = "pointer";
+            aiOption.style.transition = "background 0.3s";
+            aiOption.style.borderRadius = "10px";
+            aiOption.style.color = "#fff";
+            aiOption.style.display = "flex";
+            aiOption.style.justifyContent = "center";
+            aiOption.style.alignItems = "center";
+            
+            aiOption.addEventListener("click", function () {
+                if (textArea) {
+                    textArea.value = message;
+                }
+                aiContainer.style.display = "none";
+                
+                // Show the keyboard again after selection
+                if (keyboard) {
+                    keyboard.classList.remove("keyboard--hidden");
+                }
+            });
+            aiContainer.appendChild(aiOption);
+        });
     },
     
 

@@ -403,6 +403,21 @@ button {
     max-height: 315px; /* Adjusted for better view on smaller screens */
     overflow-y: auto;
 }
+.ai-container {
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 20;
+    border-top: 1px solid #ccc;
+    max-height: 315px !important; /* Adjusted for better view on smaller screens */
+    overflow-y: auto;
+}
 
 .gallery-container .images-grid {
     display: grid;
