@@ -17,12 +17,11 @@ body {
 .heading{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    margin: 10px;
 }
 
 .phone-icon {
-    margin-left: 5px;
+    margin-right: 20px; /* Space between icon and text */
+    margin-left: 10px;
 }
 
 .frame {
@@ -35,7 +34,7 @@ body {
     height: 350px;
     border: 5px solid var(--buttonHoverPurple);
     border-radius: 10px;
-    margin: 25px;
+    margin: 30px;
 }
 
 .icon-container {
