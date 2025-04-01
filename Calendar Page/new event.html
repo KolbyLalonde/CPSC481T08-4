@@ -1,0 +1,62 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <!-- <link rel="stylesheet" href="../style.css"> -->
+    <link rel="stylesheet" href="calendar.css">
+    <script src="newEventScript.js" defer></script>
+</head>
+<body>
+    <h2 class="heading"> Create New Event</h2>
+    
+    <div class="FormContainer">
+        <form>
+            <label for="event_name">Event Name:</label>
+            <input type = "text" id="event_name" required>
+            <p></p>
+            <label for="members">Members:</label>
+            <div class = "members">
+                <input type="checkbox" id="leslie" name="members[]" value="leslie">
+                <label for="leslie">Leslie</label><br>
+                
+                <input type="checkbox" id="kwong" name="members[]" value="kwong-wing">
+                <label for="kwong-wing">Kwong-wing</label><br>
+                
+                <input type="checkbox" id="james" name="members[]" value="lewis">
+                <label for="lewis">Lewis</label><br>
+            </div>
+            <p></p>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required> 
+            <br>
+            <br>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <br>
+            <br>
+            <label for="meeting_type">Meeting Type:</label>
+            <select id="meeting_type" name="meeting_type">
+                <option value="virtual">Virtual</option>
+                <option value="in_person">In-Person</option>
+            </select>
+            <br>
+            <br>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+            <br>
+            <br>
+        </form>
+    </div>
+    <div class="FormButton">
+        <button onclick = "exit()" class="exit" type="button">Exit</button>
+        <button type="button" id="createButton">Create</button>
+    </div>
+</body>
+</html>
+
+
+>>>>>>> daa3b5aa97a6e534cd396aeec0081421960dfc15
