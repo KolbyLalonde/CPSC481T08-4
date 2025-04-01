@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenLink - Family Connection</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Box -->
+        <div class="logo-box">
+            <img src="logo.png" alt="GenLink Logo">
+        </div>
+
+        <!-- Company Name -->
+        <h1 class="title">GenLink</h1>
+
+        <h2>Join Family Group</h2>
+
+        <!-- Form -->
+        <form onsubmit="redirectToFamilyHome(event)">
+            <input type="text" id="joinCode" name="join_code" placeholder="Enter Join Code" required>
+            <button type="submit" class="join-btn">Join Family</button>
+        </form>
+            <!-- Modal -->
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+
+        </div>
+            <!-- Users looking to set up a new family group -->
+            <div class="setup-group">
+                <div class="title-container">
+                    <h2>Create Family Group</h2>
+                    <button class="help-btn" onclick="showHelpModal()">?</button>
+                </div>
+                <form action="setup.html" method="POST">
+                    <button type="submit" class="setup-btn" id="SetupParent" onclick="showConfirmationModal()">Family Group Administrator</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Confrim Modal -->
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+                <p>Please confirm you are an adult user looking to set up a new family group.</p>
+                <div class="button-container">
+                    <button class="cancel-btn" onclick="closeConfirmationModal()">Cancel</button>
+                    <button class="confirm-btn" onclick="window.location.href='/CPSC481T08-4/NewAdminHomepage/NewAdminHomepage.html'">Confirm</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Help Modal -->
+        <div id="helpModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeHelpModal()">&times;</span>
+                <h3>Family Group Help</h3>
+                <p>Setting up a new family group allows you to be the administrator of your family's connections. You'll have control over adding members and managing family details.</p>
+            </div>
+        </div>
+
+        <script>
+            function showHelpModal() {
+                document.getElementById("helpModal").style.display = "block";
+            }
+
+            function closeHelpModal() {
+                document.getElementById("helpModal").style.display = "none";
+            }
+
+            // Show the confirmation modal when the Parent (Admin) button is clicked
+            function showConfirmationModal() {
+                document.getElementById("confirmationModal").style.display = "block";
+            }
+
+            // Close the confirmation modal
+            function closeConfirmationModal() {
+                document.getElementById("confirmationModal").style.display = "none";
+            }
+
+        </script>
+    </div>
+</body>
+</html>
