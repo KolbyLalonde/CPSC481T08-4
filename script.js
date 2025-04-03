@@ -133,66 +133,55 @@ const Keyboard = {
         const keyboard = document.querySelector(".keyboard");
         const textArea = document.querySelector(".text-area.use-keyboard-input");
         let aiContainer = document.querySelector(".ai-container");
-        
+    
         // Hide the keyboard when AI suggestions are shown
         if (keyboard) {
             keyboard.classList.add("keyboard--hidden");
         }
-        
+    
         if (!aiContainer) {
             aiContainer = document.createElement("div");
             aiContainer.classList.add("ai-container");
             document.body.appendChild(aiContainer);
         }
-        
+    
         aiContainer.innerHTML = "";
-        aiContainer.style.display = "grid";
-        aiContainer.style.gridTemplateColumns = "repeat(auto-fit, minmax(100px, 1fr))";
-        aiContainer.style.gap = "10px";
-        aiContainer.style.padding = "10px";
-        aiContainer.style.background = "#fff";
-        aiContainer.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
-        aiContainer.style.height = "315px";
-        
+        aiContainer.style.display = "grid"; // Grid structure remains as functional styling
+    
         const presetMessages = [
             "Hello!",
             "How are you?",
             "Good morning!",
+            "Good afternoon!",
             "Do you have time to call right now?",
             "I miss you",
             "Did you eat yet?",
-            "How's everyone?"
+            "How's everyone?",
+            "Good night!",
+            "See you"
         ];
     
         presetMessages.forEach(message => {
             const aiOption = document.createElement("div");
             aiOption.textContent = message;
             aiOption.classList.add("ai-message-item");
-            aiOption.style.padding = "10px";
-            aiOption.style.background = "#6D63BC";
-            aiOption.style.textAlign = "center";
-            aiOption.style.cursor = "pointer";
-            aiOption.style.transition = "background 0.3s";
-            aiOption.style.borderRadius = "10px";
-            aiOption.style.color = "#fff";
-            aiOption.style.display = "flex";
-            aiOption.style.justifyContent = "center";
-            aiOption.style.alignItems = "center";
-            
+    
             aiOption.addEventListener("click", function () {
                 if (textArea) {
                     textArea.value = message;
                 }
                 aiContainer.style.display = "none";
-                
+    
                 // Show the keyboard again after selection
                 if (keyboard) {
                     keyboard.classList.remove("keyboard--hidden");
                 }
             });
+    
             aiContainer.appendChild(aiOption);
         });
     },
+    
     
 
     _createKeyBtn(iconName, class1, onclick, class2) {
@@ -278,40 +267,6 @@ const Keyboard = {
 
         return fragment;
     },
-
-    // _sendMessage() {
-    //     const messageText = this.properties.value.trim();
-    //     if (messageText === "") return;
-
-        
-    
-    //     const chatContainer = document.querySelector(".chat-container");
-    //     const messageElement = document.createElement("div");
-    //     messageElement.classList.add("chat-message", "right");
-    
-    //     messageElement.innerHTML = ` 
-    //         <div class="avatar-container">
-    //             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
-    //                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-    //             </svg>                
-    //             <span class="user-name">${username}</span>
-    //         </div>
-    //         <div class="message-content">
-    //             <p>${messageText}</p>
-    //         </div>
-    //     `;
-    
-    //     chatContainer.appendChild(messageElement);
-    //     this.properties.value = ""; // Clear input after sending
-        
-    //     // Clear the text area
-    //     this.properties.keyboardInputs.forEach((keyboard) => {
-    //         keyboard.value = "";
-    //     });
-        
-    //     // Auto-scroll to the bottom
-    //     chatContainer.scrollTop = chatContainer.scrollHeight;
-    // },
 
     _updateValueInTarget() {
         this.properties.keyboardInputs.forEach((keyboard) => {
@@ -682,7 +637,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Add this to the end of your existing script.js file
 
 document.addEventListener("DOMContentLoaded", function() {
     // Create image viewer modal elements
