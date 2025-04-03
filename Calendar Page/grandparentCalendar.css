@@ -1,0 +1,189 @@
+/* Calendar Title */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --textPurple: #968AEC;
+    --buttonPurple: #968AEC;
+    --buttonHoverPurple: #797DD6;
+    --antiFlashWhite: #f0f0f0;
+    --Icon: black;
+}
+
+body {
+    font-size: 18px;
+    font-family: "Raleway", sans-serif;
+}
+
+
+input {
+    font-size: 16px;
+    border: 2px solid var(--Icon); /* Change border color */
+    padding: 5px;
+    border-radius: 5px;
+    max-height: fit-content;
+}
+
+input[type="checkbox"]{
+    transform: scale(1.5); /* Increase size */
+    margin-right: 5px; /* Add spacing between checkboxes and text */
+    accent-color: var(--Icon);
+}
+
+input[type="text"] {
+    padding-left: 8px; /* Add some spacing inside */
+    padding: 5px;
+    border-radius: 5px; /* Optional: Rounded corners */
+    width: 90%;
+}
+
+input[type="time"] {
+    height: 80%;
+}
+
+
+option {
+    font-size: 16px;
+}
+
+select {
+    font-size: 16px;
+    border: 2px solid var(--Icon); /* Change border color */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.header {
+    button{
+        background-color: var(--antiFlashWhite);
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        margin: 0px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+}
+
+hr{
+    border: none;
+    border-top: 1px solid var(--Icon); /* Adjust thickness and color */
+}
+
+.title{
+    text-align: center;
+    h2{
+        margin: 0px;
+    }
+    font-size: large;
+}
+
+
+.heading {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+
+.date {
+    margin-top: -10px;
+    display: flex;
+    justify-content: space-between; /* Pushes content to both ends */
+    align-items: center; /* Aligns items vertically */
+    width: 100%; /* Ensures full width */
+    font-size: smaller;
+    margin-bottom: -10px;
+}
+
+/* Event Box */
+.event {
+    color: black;
+    padding-left: 15px;
+    line-height: 1.3;
+    
+}
+
+.event p {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px;
+}
+
+.event strong {
+    flex-shrink: 0; /* Prevents the title from shrinking */
+    margin-right: 8px;
+}
+
+.container{
+    line-height: 0.9;
+}
+
+.FormContainer {
+    padding-left: 8px;
+    padding-top:5px;
+    line-height: 1.7;
+}
+
+.members {
+    margin-left: 100px;
+    margin-top:-5px;
+}
+
+
+/* Button Sticking to Bottom */
+.button {
+    padding: 10px;
+    position: fixed;
+    bottom: 16px;
+    left: -10px;
+    right:0px;
+    width: 100%;
+    text-align: center;
+    button {
+        width:  90%;
+        height: 40px;
+        background-color: var(--Icon);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+.FormButton {
+    display: flex;
+    justify-content: space-between;
+    bottom: 16px;
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.FormButton button{
+    width: 150px;
+    height: 40px;
+    background-color: var(--Icon);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.FormButton .exit{
+    background-color: grey;
+}
+
+label{
+    font-weight: bold;
+}
+
+.members label{
+    font-weight: normal;
+}
+
