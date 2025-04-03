@@ -179,7 +179,10 @@ const Keyboard = {
             });
     
             aiContainer.appendChild(aiOption);
+            
         });
+        const sendButtonContainer = document.createElement("div");
+        sendButtonContainer.className = "gallery-send-container";
     },
     
     
@@ -301,6 +304,12 @@ const Keyboard = {
         const galleryContainer = document.querySelector(".gallery-container");
         if (galleryContainer) {
             galleryContainer.style.display = "none";
+        }
+
+        //Hide message suggestions if it's open
+        const suggestionContainer = document.querySelector(".ai-container");
+        if(suggestionContainer) {
+            suggestionContainer.style.display = "none";
         }
         
         this.elements.main.classList.remove("keyboard--hidden");
