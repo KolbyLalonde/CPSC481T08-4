@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-    --textPurple: #968AEC;
-    --buttonPurple: #968AEC;
-    --buttonHoverPurple: #797DD6;
-    --backgroundPurple: #6D63BC;
+    --textPurple: grey;
+    --buttonPurple: black;
+    --buttonHoverPurple: black;
+    --backgroundPurple: black;
 }
 
 .background-body {
@@ -283,7 +283,7 @@ button {
 
 .chat-message.right .message-content::before {
     left: auto;
-    right: 32px;
+    right: 55px;
     border-color: transparent transparent transparent var(--backgroundPurple);
 }
 
@@ -650,7 +650,3 @@ body.no-scroll {
 .ai-message-item:hover {
     background: var(--buttonHoverPurple);
 }
-
-
-
-

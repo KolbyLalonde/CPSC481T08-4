@@ -45,10 +45,19 @@ const Keyboard = {
         uploadButton.addEventListener("click", () => {
             this.openFileSelector();
         });
+
+        // Create "Suggest Message" button
+        const AIButton = document.createElement("button");
+        AIButton.textContent = "Suggest Message";
+        AIButton.classList.add("keyboard__button");
+        AIButton.addEventListener("click", () => {
+            this.AIMessage();
+        });
     
         // Append buttons
         buttonsContainer.appendChild(cameraButton);
         buttonsContainer.appendChild(uploadButton);
+        buttonsContainer.appendChild(AIButton);
     
         // Create keys container
         this.elements.keysContainer = document.createElement("div");
@@ -119,6 +128,63 @@ const Keyboard = {
             if (sendButton) sendButton.disabled = true;
         }
     },
+
+    AIMessage() {
+        const keyboard = document.querySelector(".keyboard");
+        const textArea = document.querySelector(".text-area.use-keyboard-input");
+        let aiContainer = document.querySelector(".ai-container");
+    
+        // Hide the keyboard when AI suggestions are shown
+        if (keyboard) {
+            keyboard.classList.add("keyboard--hidden");
+        }
+    
+        if (!aiContainer) {
+            aiContainer = document.createElement("div");
+            aiContainer.classList.add("ai-container");
+            document.body.appendChild(aiContainer);
+        }
+    
+        aiContainer.innerHTML = "";
+        aiContainer.style.display = "grid"; // Grid structure remains as functional styling
+    
+        const presetMessages = [
+            "Hello!",
+            "How are you?",
+            "Good morning!",
+            "Good afternoon!",
+            "Do you have time to call right now?",
+            "I miss you",
+            "Did you eat yet?",
+            "How's everyone?",
+            "Good night!",
+            "See you"
+        ];
+    
+        presetMessages.forEach(message => {
+            const aiOption = document.createElement("div");
+            aiOption.textContent = message;
+            aiOption.classList.add("ai-message-item");
+    
+            aiOption.addEventListener("click", function () {
+                if (textArea) {
+                    textArea.value = message;
+                }
+                aiContainer.style.display = "none";
+    
+                // Show the keyboard again after selection
+                if (keyboard) {
+                    keyboard.classList.remove("keyboard--hidden");
+                }
+            });
+    
+            aiContainer.appendChild(aiOption);
+            
+        });
+        const sendButtonContainer = document.createElement("div");
+        sendButtonContainer.className = "gallery-send-container";
+    },
+    
     
 
     _createKeyBtn(iconName, class1, onclick, class2) {
@@ -205,38 +271,6 @@ const Keyboard = {
         return fragment;
     },
 
-    _sendMessage() {
-        const messageText = this.properties.value.trim();
-        if (messageText === "") return;
-    
-        const chatContainer = document.querySelector(".chat-container");
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message", "right");
-    
-        messageElement.innerHTML = ` 
-            <div class="avatar-container">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>                
-                <span class="user-name">Lewis</span>
-            </div>
-            <div class="message-content">
-                <p>${messageText}</p>
-            </div>
-        `;
-    
-        chatContainer.appendChild(messageElement);
-        this.properties.value = ""; // Clear input after sending
-        
-        // Clear the text area
-        this.properties.keyboardInputs.forEach((keyboard) => {
-            keyboard.value = "";
-        });
-        
-        // Auto-scroll to the bottom
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    },
-
     _updateValueInTarget() {
         this.properties.keyboardInputs.forEach((keyboard) => {
             keyboard.value = this.properties.value;
@@ -270,6 +304,12 @@ const Keyboard = {
         const galleryContainer = document.querySelector(".gallery-container");
         if (galleryContainer) {
             galleryContainer.style.display = "none";
+        }
+
+        //Hide message suggestions if it's open
+        const suggestionContainer = document.querySelector(".ai-container");
+        if(suggestionContainer) {
+            suggestionContainer.style.display = "none";
         }
         
         this.elements.main.classList.remove("keyboard--hidden");
@@ -319,6 +359,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendMessage() {
         const messageText = textArea.value.trim();
         if (messageText === "") return;
+
+        const currentPage = window.location.pathname.split("/").pop();
+        let username;
+
+        if (currentPage === "childTextChat.html") {
+            username = "Leslie";
+        }
+        else if (currentPage === "parentTextChat.html") {
+            username = "Lewis";
+        }
+        else {
+            username = "Kwong-wing";
+        }
     
         const messageElement = document.createElement("div");
         messageElement.classList.add("chat-message", "right");
@@ -328,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
-                <span class="user-name">Lewis</span>
+                <span class="user-name">${username}</span>
             </div>
             <div class="message-content">
                 <p>${messageText}</p>
@@ -518,6 +571,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendSelectedImage() {
         const selectedWrapper = document.querySelector('.image-wrapper.selected');
         if (!selectedWrapper) return;
+
+        const currentPage = window.location.pathname.split("/").pop();
+        let username;
+
+        if (currentPage === "childTextChat.html") {
+            username = "Leslie";
+        }
+        else if (currentPage === "parentTextChat.html") {
+            username = "Lewis";
+        }
+        else {
+            username = "Kwong-wing";
+        }
         
         const selectedImage = selectedWrapper.querySelector('.gallery-image');
         const imageUrl = selectedImage.src;
@@ -532,7 +598,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
-                <span class="user-name">Lewis</span>
+                <span class="user-name">${username}</span>
             </div>
             <div class="message-content">
                 <img src="${imageUrl}" alt="Shared image" class="shared-image">
@@ -580,7 +646,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Add this to the end of your existing script.js file
 
 document.addEventListener("DOMContentLoaded", function() {
     // Create image viewer modal elements
