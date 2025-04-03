@@ -245,7 +245,7 @@ button {
 
 /* Message content - better sizing */
 .message-content {
-    background: var(--textPurple);
+    background: var(--backgroundPurple);
     color: white;
     padding: 6px 10px; /* Reduced from 8px 12px */
     border-radius: 15px;
@@ -276,14 +276,14 @@ button {
     content: "";
     position: absolute;
     top: 50%;
-    left: 35px;
+    left: 30px;
     transform: translateY(-50%);
     border-width: 6px;
     border-style: solid;
     border-color: transparent var(--backgroundPurple) transparent transparent;
 }
 
-/* Different styling for right-side messages (Lewis) */
+/* Different styling for right-side messages (Kwong-wing) */
 .chat-message.right {
     align-self: flex-end;
     flex-direction: row-reverse;
@@ -300,7 +300,7 @@ button {
 
 .chat-message.right .message-content::before {
     left: auto;
-    right: 38px;
+    right: 55px;
     border-color: transparent transparent transparent var(--backgroundPurple);
 }
 

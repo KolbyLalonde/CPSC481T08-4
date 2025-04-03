@@ -279,37 +279,39 @@ const Keyboard = {
         return fragment;
     },
 
-    _sendMessage() {
-        const messageText = this.properties.value.trim();
-        if (messageText === "") return;
-    
-        const chatContainer = document.querySelector(".chat-container");
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message", "right");
-    
-        messageElement.innerHTML = ` 
-            <div class="avatar-container">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>                
-                <span class="user-name">Lewis</span>
-            </div>
-            <div class="message-content">
-                <p>${messageText}</p>
-            </div>
-        `;
-    
-        chatContainer.appendChild(messageElement);
-        this.properties.value = ""; // Clear input after sending
+    // _sendMessage() {
+    //     const messageText = this.properties.value.trim();
+    //     if (messageText === "") return;
+
         
-        // Clear the text area
-        this.properties.keyboardInputs.forEach((keyboard) => {
-            keyboard.value = "";
-        });
+    
+    //     const chatContainer = document.querySelector(".chat-container");
+    //     const messageElement = document.createElement("div");
+    //     messageElement.classList.add("chat-message", "right");
+    
+    //     messageElement.innerHTML = ` 
+    //         <div class="avatar-container">
+    //             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
+    //                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+    //             </svg>                
+    //             <span class="user-name">${username}</span>
+    //         </div>
+    //         <div class="message-content">
+    //             <p>${messageText}</p>
+    //         </div>
+    //     `;
+    
+    //     chatContainer.appendChild(messageElement);
+    //     this.properties.value = ""; // Clear input after sending
         
-        // Auto-scroll to the bottom
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    },
+    //     // Clear the text area
+    //     this.properties.keyboardInputs.forEach((keyboard) => {
+    //         keyboard.value = "";
+    //     });
+        
+    //     // Auto-scroll to the bottom
+    //     chatContainer.scrollTop = chatContainer.scrollHeight;
+    // },
 
     _updateValueInTarget() {
         this.properties.keyboardInputs.forEach((keyboard) => {
@@ -393,6 +395,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendMessage() {
         const messageText = textArea.value.trim();
         if (messageText === "") return;
+
+        const currentPage = window.location.pathname.split("/").pop();
+        let username;
+
+        if (currentPage === "childTextChat.html") {
+            username = "Leslie";
+        }
+        else if (currentPage === "parentTextChat.html") {
+            username = "Lewis";
+        }
+        else {
+            username = "Kwong-wing";
+        }
     
         const messageElement = document.createElement("div");
         messageElement.classList.add("chat-message", "right");
@@ -402,7 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
-                <span class="user-name">Lewis</span>
+                <span class="user-name">${username}</span>
             </div>
             <div class="message-content">
                 <p>${messageText}</p>
@@ -592,6 +607,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendSelectedImage() {
         const selectedWrapper = document.querySelector('.image-wrapper.selected');
         if (!selectedWrapper) return;
+
+        const currentPage = window.location.pathname.split("/").pop();
+        let username;
+
+        if (currentPage === "childTextChat.html") {
+            username = "Leslie";
+        }
+        else if (currentPage === "parentTextChat.html") {
+            username = "Lewis";
+        }
+        else {
+            username = "Kwong-wing";
+        }
         
         const selectedImage = selectedWrapper.querySelector('.gallery-image');
         const imageUrl = selectedImage.src;
@@ -606,7 +634,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="var(--textPurple)" class="icon" width="28" height="28">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
-                <span class="user-name">Lewis</span>
+                <span class="user-name">${username}</span>
             </div>
             <div class="message-content">
                 <img src="${imageUrl}" alt="Shared image" class="shared-image">
