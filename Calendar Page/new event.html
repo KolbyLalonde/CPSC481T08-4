@@ -18,13 +18,13 @@
             <p></p>
             <label for="members">Members:</label>
             <div class = "members">
-                <input type="checkbox" id="leslie" name="members[]" value="leslie">
+                <input type="checkbox" id="leslie" name="members[]" value="Leslie">
                 <label for="leslie">Leslie</label><br>
                 
-                <input type="checkbox" id="kwong" name="members[]" value="kwong-wing">
+                <input type="checkbox" id="kwong" name="members[]" value="Kwong-wing">
                 <label for="kwong-wing">Kwong-wing</label><br>
                 
-                <input type="checkbox" id="james" name="members[]" value="lewis">
+                <input type="checkbox" id="james" name="members[]" value="Lewis">
                 <label for="lewis">Lewis</label><br>
             </div>
             <p></p>
@@ -38,8 +38,8 @@
             <br>
             <label for="meeting_type">Meeting Type:</label>
             <select id="meeting_type" name="meeting_type">
-                <option value="virtual">Virtual</option>
-                <option value="in_person">In-Person</option>
+                <option value="Virtual">Virtual</option>
+                <option value="In Person">In Person</option>
             </select>
             <br>
             <br>
@@ -47,13 +47,22 @@
             <input type="text" id="location" name="location" required>
             <br>
             <br>
+            <div class="FormButton">
+                <button onclick = "ConfirmExit()" class="exit" type="button">Exit</button>
+                <button type="submit" id="createButton">Create</button>
+            </div>
         </form>
     </div>
-    <div class="FormButton">
-        <button onclick = "exit()" class="exit" type="button">Exit</button>
-        <button type="button" id="createButton">Create</button>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmationModal()">&times;</span>
+            <p>Do you really want to exit? Exiting will discard this event</p>
+            <div class="button-container">
+                <button class="cancel-btn" onclick="closeConfirmationModal()">Cancel</button>
+                <button class="confirm-btn" onclick="exit()">Exit</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
-
 
