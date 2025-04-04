@@ -95,6 +95,7 @@ body {
 }
 
 .button-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,8 +120,23 @@ button{
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 2px solid var(--antiFlashWhite);
+    border: 3px solid var(--antiFlashWhite);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.slash {
+    position: absolute;
+    top: -34%;
+    left: 53%;
+    width: 72px;
+    height: 85px;
+    border-top: 4px solid var(--antiFlashWhite);
+    transform: rotate(130deg);
+    pointer-events: none; /* So clicks go to the mic icon */
+}
+
+.hidden {
+    display: none;
 }
