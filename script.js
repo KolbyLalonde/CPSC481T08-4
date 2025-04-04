@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
             username = "Lewis";
         }
         else {
-            username = "Kwong-wing";
+            username = "Kwong";
         }
     
         const messageElement = document.createElement("div");
@@ -566,6 +566,26 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+    function showProgressOnImage() {
+        const containers = document.querySelectorAll(".shared-image-container");
+        const latestContainer = containers[containers.length - 1];
+        if (!latestContainer) return;
+    
+        // Remove any existing progress circles (cleanup)
+        const existing = latestContainer.querySelector("#progress-circle");
+        if (existing) existing.remove();
+    
+        // Create the progress circle
+        const progressCircle = document.createElement("div");
+        progressCircle.id = "progress-circle";
+        latestContainer.appendChild(progressCircle);
+    
+        // Auto-remove after 2 seconds
+        setTimeout(() => {
+            progressCircle.remove();
+        }, 2000);
+    }    
     
     // Function to send the selected image
     function sendSelectedImage() {
@@ -582,7 +602,7 @@ document.addEventListener("DOMContentLoaded", function () {
             username = "Lewis";
         }
         else {
-            username = "Kwong-wing";
+            username = "Kwong";
         }
         
         const selectedImage = selectedWrapper.querySelector('.gallery-image');
@@ -601,12 +621,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 <span class="user-name">${username}</span>
             </div>
             <div class="message-content">
-                <img src="${imageUrl}" alt="Shared image" class="shared-image">
+                <div class="shared-image-container">
+                    <div class="magnify-icon" title="Zoom">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="magnify-svg">
+                            <path d="M9 6a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5A.75.75 0 0 1 9 6Z" />
+                            <path fill-rule="evenodd" d="M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Zm7-5.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <img src="${imageUrl}" alt="Shared image" class="shared-image">
+                </div>
             </div>
         `;
+
+
+
         
         chatContainer.appendChild(messageElement);
         chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        showProgressOnImage();
         
         // Hide the gallery after sending
         galleryContainer.style.display = "none";
