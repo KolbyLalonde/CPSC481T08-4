@@ -8,61 +8,119 @@
 }
 
 body {
-    font-family: "Raleway", sans-serif;
     font-size: 18px;
+    color: var(--antiFlashWhite);
+    font-family: "Raleway", sans-serif;
+    background-color: dimgrey;
+    height: 100%;
+    margin: 0;
 }
 
-.back-button {
-    button{
-        background-color: var(--antiFlashWhite);
-        width: 30px;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        justify-content: flex-start; 
-        align-items: center;
-        margin: 0px;
-        padding: 5px;
+
+
+.time{
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: x-large;
+    h1{
+        margin:5px;
     }
 }
 
-.heading {
+.members{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow the items to wrap to the next line */
     text-align: center;
-    margin-bottom: 15px;
-    margin-top: 30px;
+    padding: 10px;
+    height: 68vh;
+    margin-top: 70px;
+    overflow-y: auto; /* Enables scrolling when content overflows */
 }
 
-.members {
+.member{
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    margin-top: 10px;
-    padding: 20px;
+    align-items: center;
+    width: 80px;
+    height: 180px;
 }
 
+.Video-member{
+    flex: 0 0 calc(50% - 16px); /* Default: 2 items per row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+        margin: 0;
+    }
+}
+
+.left-right-buttons{
+    display: flex;
+    justify-content: space-between; /* Pushes content to both ends */
+    align-items: center; /* Aligns items vertically */
+    width: 100%; /* Ensures full width */
+    position: fixed;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+}
+
+.frame{
+    width:156px;
+    height: 206px;
+    border-radius: 8px;
+    border: 2px solid var(--buttonHoverPurple);
+}
+
+.FullScreen-members{
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
 
 .icon-container {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 2.5px solid var(--textPurple);
+    border: 5px solid var(--buttonHoverPurple);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: -20px;
+    margin-top: 30px;
 }
 
-button {
+.button-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    border: 2px solid var(--textPurple);
-    cursor: pointer;
-    border-radius: 8px;
+    justify-content: center;
+    gap: 30px;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
 }
 
+button{
+    color: white;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+}
 
-
-
-
+.button-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid var(--antiFlashWhite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
