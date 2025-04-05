@@ -136,6 +136,16 @@ button{
     transform: rotate(130deg);
     pointer-events: none; /* So clicks go to the mic icon */
 }
+.slashVid {
+    position: absolute;
+    top: -34%;
+    left: 62%;
+    width: 72px;
+    height: 85px;
+    border-top: 4px solid var(--antiFlashWhite);
+    transform: rotate(130deg);
+    pointer-events: none; /* So clicks go to the mic icon */
+}
 
 .hidden {
     display: none;

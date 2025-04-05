@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Call Interface</title>
     <link rel="stylesheet" href="calls.css">
+    <script src="vCalls.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
+    <div class="time">
+        <h1 id="timerDisplay"></h1>
+    </div>
     <div class="FullScreen-members">
-        <div class="time">
-            <h1>0:30</h1>
-        </div>
-        <div class="FullScreen-member">
+        <div class="FullScreen-member hidden" id ="leslie">
             <img src="Leslie.png" alt="Leslie" width="375" height="667">
         </div>
-        <div class="FullScreen-member">
+        <div class="FullScreen-member hidden" id="lewis">
             <img src="Lewis.png" alt="Lewis" width="375" height="667">
         </div>
-        <div class="FullScreen-member">
+        <div class="FullScreen-member hidden" id ="kwong-wing">
             <img src="Kwong-Wing.png" alt="Lewis" width="375" height="667">
         </div>
         <div class="left-right-buttons">
@@ -32,29 +34,29 @@
                 </svg>
             </button>
         </div>
-        <div class="button-container">
-            <button type="submit">
-                <div class="button-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--antiFlashWhite)" width="40" height="40">
-                        <path d="M3.28 2.22a.75.75 0 0 0-1.06 1.06L5.44 6.5H2.75a.75.75 0 0 0 0 1.5h4.5A.75.75 0 0 0 8 7.25v-4.5a.75.75 0 0 0-1.5 0v2.69L3.28 2.22ZM13.5 2.75a.75.75 0 0 0-1.5 0v4.5c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-2.69l3.22-3.22a.75.75 0 0 0-1.06-1.06L13.5 5.44V2.75ZM3.28 17.78l3.22-3.22v2.69a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.69l-3.22 3.22a.75.75 0 1 0 1.06 1.06ZM13.5 14.56l3.22 3.22a.75.75 0 1 0 1.06-1.06l-3.22-3.22h2.69a.75.75 0 0 0 0-1.5h-4.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-2.69Z" />
-                    </svg>
-                </div>
-                Minimize Screen
-            </button>
-            <button type="submit">
-                <img src="decline-phone-call.webp" alt="decline phone call" width="70" height="70">
-                Hang Up
-            </button>
-            <button type="submit">
-                <div class="button-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="50" height="50">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
-                    </svg>
-                </div>
-                Microphone
-            </button>
-        </div>
     </div>
-
+    <div class="button-container">
+        <button type="button" onclick= minScreenToggle()>
+            <div class="button-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--antiFlashWhite)" width="40" height="40">
+                    <path d="M3.28 2.22a.75.75 0 0 0-1.06 1.06L5.44 6.5H2.75a.75.75 0 0 0 0 1.5h4.5A.75.75 0 0 0 8 7.25v-4.5a.75.75 0 0 0-1.5 0v2.69L3.28 2.22ZM13.5 2.75a.75.75 0 0 0-1.5 0v4.5c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-2.69l3.22-3.22a.75.75 0 0 0-1.06-1.06L13.5 5.44V2.75ZM3.28 17.78l3.22-3.22v2.69a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.69l-3.22 3.22a.75.75 0 1 0 1.06 1.06ZM13.5 14.56l3.22 3.22a.75.75 0 1 0 1.06-1.06l-3.22-3.22h2.69a.75.75 0 0 0 0-1.5h-4.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-2.69Z" />
+                </svg>
+            </div>
+            Min Screen
+        </button>
+        <button type="button" onclick = back()>
+            <img src="decline-phone-call.webp" alt="decline phone call" width="70" height="70">
+            Hang Up
+        </button>
+        <button type="button" onclick = toggleMicrophone()>
+            <div class="button-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="50" height="50">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                </svg>
+            </div>
+            <div id="slash" class="slashVid hidden"></div>
+            <div id = "txtMic"> Microphone</div>
+        </button>
+    </div>
 </body>
 </html>
