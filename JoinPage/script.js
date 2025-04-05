@@ -25,17 +25,16 @@ function closeConfirmationModal() {
     document.getElementById("confirmationModal").style.display = "none";
 }
 
+// Updated confirmation function
+function confirmSetup() {
+    closeConfirmationModal();  // Close the confirmation modal first
+    showInputModal();  // Open the input modal instead of navigating immediately
+}
+
 
 // Close the confirmation modal
 function closeConfirmationModal() {
     document.getElementById("confirmationModal").style.display = "none";
-}
-
-// Handle the confirmation action
-function confirmSetup() {
-    // You can add any additional logic for proceeding after confirmation
-    alert('You have confirmed to set up the family group as Parent (Admin).');
-    closeConfirmationModal();  // Close the modal after confirmation
 }
 
 // Attach the confirmation modal to the "Parent (Admin)" button
@@ -43,3 +42,44 @@ document.getElementById("SetupParent").addEventListener("click", function(event)
     event.preventDefault(); // Prevent form submission
     showConfirmationModal(); // Show the confirmation modal
 });
+
+// Function to open the input modal
+function showInputModal() {
+    document.getElementById("inputModal").style.display = "block";
+}
+
+// Close the input modal
+function closeInputModal() {
+    document.getElementById("inputModal").style.display = "none";
+}
+
+function submitDetails() {
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const joinCode = document.getElementById("joinCode").value.trim();
+    
+    if (firstName === "" || lastName === "") {
+        alert("Please enter both first and last names.");
+        return;
+    }
+
+    // Retrieve existing family members from localStorage or initialize an empty array
+    let familyMembers = JSON.parse(localStorage.getItem("familyMembers")) || [];
+
+    // Add the new member
+    familyMembers.push({ firstName, lastName });
+
+    // Store updated family members back to localStorage
+    localStorage.setItem("familyMembers", JSON.stringify(familyMembers));
+
+    // Clear input fields
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("joinCode").value = "";
+
+    // Close the modal (assuming a modal is being used for input)
+    closeInputModal();
+
+    // Redirect to the Admin Homepage where members will be displayed
+    window.location.href = "../NewAdminHomepage/NewAdminHomepage.html";
+}
