@@ -56,10 +56,10 @@ function closeInputModal() {
 function submitDetails() {
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
-    const joinCode = document.getElementById("joinCode").value.trim();
+    const familyJoinCode = document.getElementById("familyJoinCode").value.trim();
     
-    if (firstName === "" || lastName === "") {
-        alert("Please enter both first and last names.");
+    if (firstName === "" || lastName === "" || familyJoinCode === "") {
+        alert("Please enter all feilds.");
         return;
     }
 
@@ -72,10 +72,13 @@ function submitDetails() {
     // Store updated family members back to localStorage
     localStorage.setItem("familyMembers", JSON.stringify(familyMembers));
 
+    // Store new familyJoinCode in localStorage
+    localStorage.setItem("familyJoinCode", familyJoinCode);
+
     // Clear input fields
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
-    document.getElementById("joinCode").value = "";
+    document.getElementById("familyJoinCode").value = "";
 
     // Close the modal (assuming a modal is being used for input)
     closeInputModal();
