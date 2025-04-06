@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Member Profile</title>
+    <link rel="stylesheet" href="profile_styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit Family Member Profile</h2>
+
+        <form id="family-member-form">
+            <!-- First Name -->
+            <div class="name-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="name-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+
+            <!-- User Restrictions -->
+            <div class="name-group">
+                <label for="restrictions">User Restrictions:</label>
+                <span class="help-icon" onclick="showHelpModal()">?</span>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="phone-call" name="restrictions" value="phone-call">
+                    <label for="phone-call">Phone Call</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="video-call" name="restrictions" value="video-call">
+                    <label for="video-call">Video Call</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="text-message" name="restrictions" value="text-message">
+                    <label for="text-message">Text Message</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="schedule-events" name="restrictions" value="schedule-events">
+                    <label for="schedule-events">Schedule Events</label>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="admin-access" name="restrictions" value="admin-access" checked>
+                    <label for="admin-access">User Administration</label>
+                </div>                
+            </div>
+
+            <!-- Age Range -->
+            <div class="form-group">
+                <label for="age-range">Age:</label>
+                <div class="radio-group">
+                    <div>
+                        <input type="radio" id="under18" name="age-range" value="under18">
+                        <label for="under18">Under 18</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="18-50" name="age-range" value="18-50">
+                        <label for="18-50">18-50</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="above50" name="age-range" value="above50">
+                        <label for="above50">Above 50</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="buttons">
+                <button type="button" class="exit" onclick="window.location.href='/CPSC481T08-4/AdminHomepage/AdminHomepage.html'">Exit</button>
+                <button type="button" class="save" onclick="showSaveModal()">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Full Screen Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeHelpModal()">&times;</span>
+            <h3>User Restrictions Help</h3>
+            <p>Here you can manage the restrictions for the user. Each option allows (if deselected) or restricts (if selected) certain actions:</p>
+            <ul>
+                <li><strong>Phone Call:</strong> Restricts the ability to make phone calls.</li>
+                <li><strong>Video Call:</strong> Restricts the ability to make video calls.</li>
+                <li><strong>Text Message:</strong> Restricts the ability to send text messages.</li>
+                <li><strong>Schedule Events:</strong> Restricts the ability to schedule events.</li>
+                <li><strong>User Administration:</strong> Restricts administrative privileges.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Full Screen Proof of Concept Modal -->
+    <div id="saveModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSaveModal()">&times;</span>
+            <h3>NOTE: This Edit Feature is Under Development</h3>
+            <p>This edit feature is a proof of concept. It is still under development and new profile editing will not be saved at this time.</p>
+            <!-- Exit Button for the Save Modal -->
+            <button class="exit" onclick="window.location.href='/CPSC481T08-4/AdminHomepage/AdminHomepage.html'">Exit</button>
+        </div>
+    </div>
+
+
+    <!-- Full Screen Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeErrorModal()">&times;</span>
+            <h3>Missing Required Information</h3>
+            <p>Please fill in all the required fields before submitting the form. This includes a first name, last name and age.</p>
+        </div>
+    </div>
+
+    <script>
+        // Prefill form if editing
+        window.addEventListener("DOMContentLoaded", () => {
+            const familyMembers = JSON.parse(localStorage.getItem("familyMembers")) || [];
+            const editIndex = localStorage.getItem("editIndex");
+
+            if (editIndex !== null) {
+                const index = parseInt(editIndex);
+                if (!isNaN(index) && familyMembers[index]) {
+                    const member = familyMembers[index];
+
+                    document.getElementById("first-name").value = member.firstName;
+                    document.getElementById("last-name").value = member.lastName;
+
+                    if (member.ageRange) {
+                        const ageRadio = document.querySelector(`input[name="age-range"][value="${member.ageRange}"]`);
+                        if (ageRadio) ageRadio.checked = true;
+                    }
+
+                    if (Array.isArray(member.restrictions)) {
+                        member.restrictions.forEach(r => {
+                            const box = document.querySelector(`input[name="restrictions"][value="${r}"]`);
+                            if (box) box.checked = true;
+                        });
+                    }
+                }
+            }
+        });
+
+        // Handle form submission
+        document.getElementById("family-member-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById("first-name").value.trim();
+            const lastName = document.getElementById("last-name").value.trim();
+            const ageRange = document.querySelector('input[name="age-range"]:checked')?.value || '';
+            const restrictions = [];
+
+            document.querySelectorAll('input[name="restrictions"]:checked').forEach(r => {
+                restrictions.push(r.value);
+            });
+
+            if (firstName && lastName && ageRange) {
+                const familyMember = { firstName, lastName, ageRange, restrictions };
+
+                let familyMembers = JSON.parse(localStorage.getItem("familyMembers")) || [];
+                const editIndex = localStorage.getItem("editIndex");
+
+                if (editIndex !== null) {
+                    const index = parseInt(editIndex);
+                    if (!isNaN(index) && familyMembers[index]) {
+                        familyMembers[index] = familyMember;
+                    } else {
+                        familyMembers.push(familyMember);
+                    }
+                } else {
+                    familyMembers.push(familyMember);
+                }
+
+                localStorage.setItem("familyMembers", JSON.stringify(familyMembers));
+                localStorage.removeItem("editIndex"); // clear editing state
+                window.location.href = 'AdminHomepage.html';
+            } else {
+                document.getElementById("errorModal").style.display = "block";
+            }
+        });
+
+        // Show modals
+        function showHelpModal() {
+            document.getElementById("helpModal").style.display = "block";
+        }
+
+        function closeHelpModal() {
+            document.getElementById("helpModal").style.display = "none";
+        }
+
+        function closeErrorModal() {
+            document.getElementById("errorModal").style.display = "none";
+        }
+
+        // Show Save Modal (proof of concept message)
+        function showSaveModal() {
+            document.getElementById("saveModal").style.display = "block";
+        }
+
+        // Close Save Modal
+        function closeSaveModal() {
+            document.getElementById("saveModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator Homepage</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function editFamilyMember(name) {
+            // Show the Proof of Concept modal when the Edit button is clicked
+            document.getElementById('saveModal').style.display = 'block';
+        }
+
+        function addFamilyMember() {
+            // Show the Proof of Concept modal when the Add Family Member button is clicked
+            document.getElementById('addModal').style.display = 'block';
+        }
+
+        function closeSaveModal() {
+            document.getElementById('saveModal').style.display = 'none';
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -12,7 +31,7 @@
         <!-- Family Join Code Section -->
         <div class="family-join-code">
             <label for="family-code">Family Join Code:</label>
-            <span id="family-code">X67DF42W</span>
+            <span id="family-code">123</span>
             <button class="copy-code-button">Copy Code</button>
         </div>
 
@@ -21,18 +40,19 @@
         <!-- Family Member Section -->
         <div class="family-member-field">
             <h3>Family Members List</h3>
-            <ul class="family-member-list">
+            <ul id="family-member-list" class="family-member-list">
+                <!-- Family members will be displayed here -->
                 <li>
-                    <span>Lewis Lau</span>
-                    <button class="edit-icon"></button>
+                    <span>Lau Kwong-wing</span>
+                    <button class="edit-icon" onclick="editFamilyMember('Lau Kwong-wing')"></button>
                 </li>
                 <li>
                     <span>Leslie Lau</span>
-                    <button class="edit-icon"></button>
+                    <button class="edit-icon" onclick="editFamilyMember('Leslie Lau')"></button>
                 </li>
                 <li>
-                    <span>Lau Kwong-wing</span>
-                    <button class="edit-icon"></button>
+                    <span>Lewis Lau</span>
+                    <button class="edit-icon" onclick="editFamilyMember('Lewis Lau')"></button>
                 </li>
             </ul>
         </div>
@@ -40,12 +60,59 @@
         <hr>
 
         <!-- Add New Family Member Button -->
-        <button class="button">Add New Family Member</button>
-    </div>
-    <!-- Footer Tab Bar -->
-    <div class="footer-tab-bar">
-        <button class="tab-button active" id="admin-tab">Admin Tab</button>
-        <button class="tab-button" id="home-tab" onclick="window.location.href='/CPSC481T08-4/FamilyHomePage/parentHome.html'">Home Tab</button>
+        <button class="button" onclick="addFamilyMember()">Add New Family Member</button>
+
+        <!-- Footer Tab Bar -->
+        <div class="footer-tab-bar">
+            <button class="tab-button active" id="admin-tab">Admin Tab</button>
+            <button class="tab-button" id="home-tab" onclick="window.location.href='/CPSC481T08-4/FamilyHomePage/parentHome.html'">Home Tab</button>
+        </div>
+
+        <!-- Proof of Concept Modal for Edit Feature -->
+        <div id="saveModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeSaveModal()">&times;</span>
+                <h3>NOTE: This Edit Feature is Under Development</h3>
+                <p>This edit feature is a proof of concept. It is still under development and new profile editing will not be saved at this time.</p>
+                <!-- Exit Button for the Save Modal -->
+                <button class="exit" onclick="window.location.href='/CPSC481T08-4/AdminHomepage/AdminHomepage.html'">Exit</button>
+            </div>
+        </div>
+
+        <!-- Proof of Concept Modal for Add Family Member Feature -->
+        <div id="addModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddModal()">&times;</span>
+                <h3>NOTE: This Add Family Member Feature is Under Development</h3>
+                <p>This feature is a proof of concept shown while first creating a new family group. Existing groups can not add new members at this time.</p>
+                <!-- Exit Button for the Add Modal -->
+                <button class="exit" onclick="window.location.href='/CPSC481T08-4/AdminHomepage/AdminHomepage.html'">Exit</button>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+                <p>Please confirm that you have added all family member accounts.</p>
+                <button onclick="closeConfirmationModal()">Cancel</button>
+                <button onclick="confirmSetup()">Confirm</button>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal for Join Code -->
+        <div id="joinCodeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeJoinCodeModal()">&times;</span>
+                <p>Please make sure to save the join code:</p>
+                <p id="joinCodeDisplay" style="font-weight: bold; font-size: 20px;">X67DF42W</p>
+                <p>Are you sure you have saved it?</p>
+                <button class="red-btn" onclick="closeJoinCodeModal()">Cancel</button>
+                <button class="blue-btn" onclick="copyJoinCode()">Copy Code</button>
+                <button class="green-btn" onclick="confirmJoinCode()">Yes, Continue</button>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
