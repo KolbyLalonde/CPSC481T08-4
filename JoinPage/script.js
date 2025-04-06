@@ -4,7 +4,11 @@ function redirectToFamilyHome(event) {
 
     if(joinCode == "123"){
         window.location.href = "../FamilyHomePage/userSelection.html";
-    } else if (joinCode !== "") {
+    } 
+    else if (joinCode == "abc"){
+        window.location.href = "../FamilyHomePage/userSelectionP2.html";
+    }
+    else if (joinCode !== "") {
         showModal("This is an incorrect family join code.");
     } else {
         showModal("Please enter a join code.");
