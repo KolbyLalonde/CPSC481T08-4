@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <div class="container">
 
@@ -14,7 +15,7 @@
         <div class="family-join-code">
             <label for="family-code">Family Join Code:</label>
             <span id="family-code">X67DF42W</span>
-            <button class="copy-code-button">Copy Code</button>
+            <button class="copy-code-button" onclick="copyJoinCode()">Copy Code</button>
         </div>
 
         <hr>
@@ -60,6 +61,36 @@
         </div>
     </div>
 
+    <script>
+        // Function to display the familyJoinCode from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const familyJoinCode = localStorage.getItem("familyJoinCode");
+            if (familyJoinCode) {
+                document.getElementById("family-code").textContent = familyJoinCode;
+                document.getElementById("joinCodeDisplay").textContent = familyJoinCode;
+            }
+        });
 
+        // Function to copy the join code to clipboard
+        function copyJoinCode() {
+            const joinCode = document.getElementById("family-code").textContent;
+            navigator.clipboard.writeText(joinCode).then(function() {
+                alert("Join code copied to clipboard!");
+            }, function(err) {
+                alert("Error copying join code: " + err);
+            });
+        }
+
+        // Function to close the Join Code Modal
+        function closeJoinCodeModal() {
+            document.getElementById("joinCodeModal").style.display = "none";
+        }
+
+        // Function to confirm the Join Code
+        function confirmJoinCode() {
+            closeJoinCodeModal();
+            // Proceed with the next steps
+        }
+    </script>
 </body>
 </html>
