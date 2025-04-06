@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="userSelection.css">
 </head>
 <body>
-    <div class="exit-button" onclick="window.location.href='/CPSC481T08-4/JoinPage/JoinPage.html'">
-        <button class = "back" type="submit">
+    <div class="exit-button">
+        <button class="back" type="submit" id="exitButton">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="var(--textPurple)" class="exit" width="20" height="20">
                 <path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" />
                 <path fill-rule="evenodd" d="M14 10a.75.75 0 0 0-.75-.75H3.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 14 10Z" clip-rule="evenodd" />
@@ -67,4 +67,60 @@
         <button class="tab-button" id="admin-tab" onclick="window.location.href='/CPSC481T08-4/AdminHomepage/AdminHomepage.html'">Admin Tab</button>
         <button class="tab-button active" id="home-tab">Home Tab</button>
     </div>
+
+
+        <!-- Modal for code entry -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5" width="50" height="50">
+                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                  </svg>
+                <h2>Attention!</h2>
+                <h3>You are about to exit the family group, please enter the join code to confirm your exit.</h3>
+                <input type="text" id="codeInput" placeholder="Enter code">
+                <button id="submitCode">Submit</button>
+                <p id="error" style="color:red; display:none;">Incorrect code. Please try again.</p>
+            </div>
+        </div>
+
+    <script>
+        // Get modal elements
+        var modal = document.getElementById("myModal");
+        var exitButton = document.getElementById("exitButton");
+        var closeBtn = document.getElementsByClassName("close")[0];
+        var submitCodeButton = document.getElementById("submitCode");
+        var codeInput = document.getElementById("codeInput");
+        var errorMsg = document.getElementById("error");
+
+        // Open the modal when the "Exit Group" button is clicked
+        exitButton.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Close the modal when the 'x' is clicked
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Validate code and redirect if correct
+        submitCodeButton.onclick = function() {
+            var enteredCode = codeInput.value;
+
+            if (enteredCode === "123") {
+                // Redirect to the next page if code is correct
+                window.location.href = '/CPSC481T08-4/JoinPage/JoinPage.html';
+            } else {
+                // Show error message if code is incorrect
+                errorMsg.style.display = "block";
+            }
+        }
+    </script>
 </body>

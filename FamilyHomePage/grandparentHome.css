@@ -95,6 +95,7 @@ button {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
+    position: relative; /* <---- important for close button positioning */
     width: 80%;
     max-width: 400px;
     border-radius: 8px;
@@ -108,3 +109,11 @@ button {
     margin-right: auto;
 }
 
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
