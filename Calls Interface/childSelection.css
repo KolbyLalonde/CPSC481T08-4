@@ -16,38 +16,33 @@
 body {
     font-family: "Raleway", sans-serif;
     font-size: 18px;
-    background-color: var(--antiFlashWhite);
     color: var(--textPurple);
     margin: 0;
     padding: 0;
     transition: background-color 0.3s ease;
 }
 
-.exit-button {
-    p {
-        margin: 0;
-        margin-left: 5px;
-        color: var(--textPurple);
-        font-size: 18px;
-        transition: color 0.3s ease;
-    }
-    button {
-        background-color: var(--antiFlashWhite);
-        width: 100px;
+.back-button {
+    padding: 10px;
+    margin: 0px;
+    button{
+        background-color: #f0f0f0;
+        width: 30px;
         border: none;
         cursor: pointer;
         display: flex;
-        justify-content: flex-start;
+        justify-content: flex-start; 
         align-items: center;
-        margin: 0;
-        padding: 1px;
-        border-radius: 12px;
-        transition: transform 0.2s ease;
+        margin: 0px;
+        padding: 5px;
+        border-radius: 8px;
     }
-    button:hover {
-        transform: scale(1.1);
+    button:hover{
+        background-color: #f0f0f0;
+        transform: scale(1.00);
     }
 }
+
 
 .heading {
     text-align: center;
