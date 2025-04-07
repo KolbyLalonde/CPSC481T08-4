@@ -18,6 +18,7 @@ This document outlines key points to help you navigate and set up the system.
 - **Family Join Codes:**
   - To access the main family group containing all current functionality use the code: **"123"**
   - To access the secondary family group displaying user restrictions through tab hiding use the code: **"abc"**
+  - Note that newly created family groups will not be assecible with the join code. (Proof of concept design)
 
 ---
 
@@ -29,6 +30,7 @@ To view the interface as intended:
 2. Open **Developer Tools** (Right-click > Inspect or press `Cmd+Option+I` / `Ctrl+Shift+I`).
 3. Toggle **device toolbar** (icon that looks like a phone/tablet or press `Cmd+Shift+M` / `Ctrl+Shift+M`).
 4. Set the screen size to **375 x 667** (iPhone SE).
+5. Start the project through a live server from the page **CPSC481T08-4/JoinPage/JoinPage.html**.
 
 ---
 
@@ -38,4 +40,3 @@ To view the interface as intended:
 - Provide an intuitive and low-friction UI for all age groups.
 - Offer simple administrative controls for parents (Admin users).
 
----
