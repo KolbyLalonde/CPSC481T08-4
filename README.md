@@ -13,9 +13,11 @@ This document outlines key points to help you navigate and set up the system.
 ## Key Notes
 
 - **Screen Dimensions:**  
-  The system was designed specifically for the **iPhone SE** screen size (**375x667** pixels).  
-  We recommend using **Google Chrome** and setting your viewport to these dimensions to view the screens as intended.  
-  In a final product release, all components would be expected to scale appropriately for different screen sizes.
+  The system was designed specifically for the **iPhone SE** screen size (**375x667** pixels). We recommend using **Google Chrome** and setting your viewport to these dimensions to view the screens as intended. In a final product release, all components would be expected to scale appropriately for different screen sizes.
+
+- **Family Join Codes:**
+  -- To access the main family group containing all current functionality use the code: **"123"**
+  -- To access the secondary family group displaying user restrictions through tab hiding use the code: **"abc"**
 
 ---
 
