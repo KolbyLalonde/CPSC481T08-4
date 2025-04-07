@@ -1,0 +1,724 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --textPurple: #4DCAFF;
+    --buttonPurple: #4DCAFF;
+    --buttonHoverPurple: #0077b6;
+    --backgroundPurple: #00b4d8;
+}
+
+.background-body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--backgroundPurple); /* Set your desired background color */
+    position: fixed; /* Fix the background to cover the entire screen */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure the background stays behind the content */
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    color: var(--textPurple);
+    margin: 20px;
+    padding: 0;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(backgroundChild.jpeg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; 
+    z-index: -1;
+}
+
+
+
+h2 {
+    color: white;
+}
+
+/* Header Styling */
+.header {
+    background-color: var(--textPurple);
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px; /* Slightly increased height */
+    display: flex;
+    align-items: center; /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.container {
+    margin: 20px; /* Regular margin for body */
+    padding: 20px;
+    position: relative;
+    top: 100px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    padding: 10px 15px;
+    background-color: var(--textPurple);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* button:hover {
+    background-color: var(--buttonHoverPurple);
+} */
+
+
+/* Text Area Styling */
+.text-area {
+    width: 285px;
+    max-width: 100%;
+    height: 20px; /* Keep the height as 20px */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    transition: padding 0.3s ease-out;  /* Only transition padding for smooth effect */
+}
+
+.text-area.active {
+    bottom: 274px; /* Adjust this value based on your keyboard height */
+}
+
+.keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;  /* Initially hidden off-screen */
+    width: 100%;
+    padding: 5px 0;
+    background: hsl(0, 0%, 83%);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.3s ease-out; /* Smooth transition for bottom movement */
+    z-index: 5; /* Below the text area */
+}
+
+.keyboard--hidden {
+    bottom: -50%;
+}
+
+.keyboard__keys {
+	text-align: center;
+}
+
+.keyboard__key {
+	height: 45px;
+	width: 6%;
+	max-width: 90px;
+	margin: 3px;
+	border-radius: 4px;
+	border: none;
+	background: #FFFF;
+	color: black;
+	font-size: 1.05rem;
+	outline: none;
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: top;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+	position: relative;
+}
+
+.keyboard__key:active {
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key--wide {
+	width: 12%;
+}
+
+.keyboard__key--extra--wide {
+	width: 36%;
+	max-width: 500px;
+}
+
+.keyboard__key--activatable::after {
+	content: "";
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 8px;
+	height: 8px;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+	background: #08ff00;
+}
+
+.keyboard__key--dark {
+	background: rgba(0, 0, 0, 0.25);
+}
+
+
+/* Chat Container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 40px; /* Reduced from 80px to give more space for messages */
+    overflow-y: auto;
+    max-height: calc(100vh - 130px); /* Adjusted to provide more space */
+    box-sizing: border-box;
+}
+
+/* Chat Message - Improve positioning */
+.chat-message {
+    display: flex;
+    align-items: flex-end;
+    max-width: 80%; /* Increased slightly from 75% */
+    margin-bottom: 8px;
+    position: relative;
+    margin-top: 10px; /* Reduced from 20px to compact messages */
+    clear: both; /* Ensure proper wrapping */
+}
+
+/* Left-aligned messages (Leslie, Kwong) */
+.chat-message:not(.right) {
+    align-self: flex-start;
+}
+
+/* Right-aligned messages (Lewis) */
+.chat-message.right {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* Avatar container - make it more compact */
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px; /* Reduced from 8px */
+    margin-left: 0;
+    min-width: 35px; /* Ensure consistent width */
+}
+
+.chat-message.right .avatar-container {
+    margin-left: 5px; /* Reduced from 8px */
+    margin-right: 0;
+}
+
+/* Make avatar smaller */
+.avatar {
+    width: 40px; /* Reduced from 30px */
+    height: 40px; /* Reduced from 30px */
+    border-radius: 50%;
+}
+
+/* User name - make it more compact */
+.user-name {
+    font-size: 10px; /* Reduced from 12px */
+    color: black;
+    font-weight: 900;
+    margin-top: 2px; /* Reduced from 5px */
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/* Message content - better sizing */
+.message-content {
+    background: var(--backgroundPurple);
+    color: white;
+    padding: 6px 10px; /* Reduced from 8px 12px */
+    border-radius: 13px;
+    font-size: 13px; 
+    line-height: 1.3; /* Reduced from 1.4 */
+    max-width: calc(100% - 40px); /* Ensure message doesn't overflow */
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
+
+
+/* Speech Bubble Tail */
+.message-content::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent var(--backgroundPurple) transparent transparent;
+}
+
+/* Different styling for right-side messages (Lewis) */
+.chat-message.right {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.chat-message.right .avatar-container {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.chat-message.right .message-content {
+    background: var(--backgroundPurple);
+}
+
+.chat-message.right .message-content::before {
+    left: auto;
+    right: 32px;
+    border-color: transparent transparent transparent var(--backgroundPurple);
+}
+
+/* Input Container */
+.input-container {
+    position: fixed;
+    bottom: 0; /* Sticks to the bottom */
+    left: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: bottom 0.3s ease-out;
+    z-index: 10;
+    background-color: var(--textPurple);
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.input-container.active {
+    bottom: 315px;  /* Adjust the bottom value based on the keyboard height */
+}
+
+/* Send Button Styling */
+.send-button {
+    background-color: var(--backgroundPurple);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Send Button Hover Effect */
+.send-button:hover {
+    background-color: var(--buttonHoverPurple);
+}
+
+.keyboard__buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: #ddd;
+    border-bottom: 1px solid #ccc;
+}
+
+.keyboard__button {
+    padding: 8px 12px;
+    border: none;
+    background: var(--buttonPurple);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.keyboard__button:hover {
+    background: var(--buttonHoverPurple);
+}
+
+.back-button {
+    button{
+        background-color: var(--backgroundPurple);
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        margin: 10px;
+        padding: 5px;
+        position: fixed;
+        left: 1px;
+        top: 1px;
+    }
+}
+
+/* Gallery Styles */
+.gallery-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 20;
+    border-top: 1px solid #ccc;
+    max-height: 315px; /* Adjusted for better view on smaller screens */
+    overflow-y: auto;
+}
+
+.gallery-container .images-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 8px; /* Small gap between images */
+    margin-bottom: 10px;
+}
+
+/* Adjust image wrapper size for 3-column layout on 375px width screen */
+.image-wrapper {
+    position: relative;
+    width: 100%; /* Take full width of grid cell */
+    aspect-ratio: 1/1; /* Keep images square */
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Selected Image Styling */
+.image-wrapper.selected {
+    border-color: var(--buttonPurple);
+}
+
+/* Gallery Images */
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Checkmark Icon */
+.image-checkmark {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--buttonPurple);
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Show checkmark when selected */
+.image-wrapper.selected .image-checkmark {
+    display: flex;
+}
+
+/* Image hover effect */
+.image-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* Gallery Controls */
+.gallery-send-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--textPurple);
+    width: 100vw;
+    left: 0;
+    right: 0;
+    margin: 0 !important;
+    box-sizing: border-box;
+    z-index: 21; /* Above the gallery but below other elements */
+}
+
+/* Gallery Buttons */
+.gallery-send-button, 
+.gallery-cancel-button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+.gallery-send-button {
+    background-color: var(--backgroundPurple);
+    color: white;
+}
+
+.gallery-cancel-button {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* Image viewer overlay */
+.image-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-viewer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-viewer-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-viewer-img {
+    max-width: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.image-viewer-overlay.active .image-viewer-img {
+    transform: scale(1);
+}
+
+.image-viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1001;
+}
+
+.image-viewer-close:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Prevent scrolling when viewing image */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Make shared images in chat appear clickable */
+.shared-image {
+    max-width: 100px; /* Adjust width as needed */
+    max-height: 100px; /* Adjust height as needed */
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.shared-image:hover {
+    opacity: 0.9;
+}
+
+/* Add a subtle animation to indicate tappability on mobile */
+@media (hover: none) {
+    .shared-image:active {
+        transform: scale(0.98);
+    }
+}
+
+.profile-container {
+    display:list-item;
+    flex-direction: row;
+    width: 100%;
+    top: 100px;
+    margin-top: 20px; /* Adjusted spacing */
+    overflow-y: auto;
+    max-height: 100px; /* Provides more space */
+    box-sizing: border-box;
+    text-align: center;
+    background-color: var(--textPurple);
+    border-radius: 8px;
+    color: white;
+    font-weight: 300;
+    padding: 10px;
+}
+
+.profile-container svg {
+    width: 50px;
+    height: 50px;
+}
+
+
+.profile-item {
+    display: flex;
+    align-items: center; /* Ensures avatar and text are aligned vertically */
+    justify-content: center; /* Centers the content horizontally */
+    gap: 10px; /* Adds spacing between avatar and text */
+    background-color: rgba(255, 255, 255, 0.2); /* Light overlay for distinction */
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+.profile-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Ensures circular avatars */
+}
+
+.profile-item span {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.ai-container {
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ensures responsiveness */
+    grid-template-rows: repeat(3, auto); /* Ensures exactly 3 rows */
+    background-color: white;
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 20;
+    border-top: 1px solid #ccc;
+    max-height: 315px !important; /* Adjusted for better view on smaller screens */
+    overflow-y: auto;
+}
+
+.ai-message-item {
+    padding: 10px;
+    background: var(--backgroundPurple);
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px; /* Ensures uniform box height */
+    font-weight: 600;
+}
+
+.ai-message-item:hover {
+    background: var(--buttonHoverPurple);
+}
+
+.shared-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.magnify-icon {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    padding: 4px;
+    border-radius: 4px;
+    z-index: 5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.magnify-svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--backgroundPurple);
+}
+
+
+
+.shared-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Overlapping Progress Circle */
+#progress-circle {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
