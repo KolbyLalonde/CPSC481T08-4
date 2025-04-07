@@ -138,6 +138,7 @@ hr{
 }
 
 .modal-content {
+    color: var(--textPurple);
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
@@ -163,4 +164,13 @@ hr{
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid var(--textPurple);
+    border-radius: 5px;
+    width: 80%;
+    box-sizing: border-box;
 }

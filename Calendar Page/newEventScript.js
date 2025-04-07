@@ -1,4 +1,18 @@
-
+window.addEventListener('DOMContentLoaded', () => {
+    referrer = document.referrer;
+    if(referrer.includes("grandparentCalendar.html")){
+        document.body.style.fontSize = "20px";
+        const input = document.getElementsByClassName("input");
+        for (let i = 0; i < input.length; i++) {
+            input[i].style.fontSize = "18px";
+        }
+        document.getElementsByClassName("FormContainer")[0].style.lineHeight = "1.5";
+        const button = document.getElementsByTagName("button")
+        for (let i = 0; i < button.length; i++) {
+            button[i].style.fontSize = "20px";
+        }
+    }
+});
 document.getElementById("createButton").addEventListener("click", function(event) {
     // Store the referrer (previous page)
     localStorage.setItem("referrer", document.referrer);

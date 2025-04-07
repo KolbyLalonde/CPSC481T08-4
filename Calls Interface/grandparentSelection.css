@@ -18,15 +18,10 @@ button h2 {
     font-size: 28px; /* Adjust this value to make the text bigger */
 }
 
-.exit-button {
-    p{
-        margin: 0px;
-        margin-left: 5px;
-        color: var(--textPurple);
-    }
+.back-button {
     button{
         background-color: var(--antiFlashWhite);
-        width: 100px;
+        width: 35px;
         border: none;
         cursor: pointer;
         display: flex;
@@ -34,8 +29,10 @@ button h2 {
         align-items: center;
         margin: 0px;
         padding: 5px;
+        border-radius: 8px;
     }
 }
+
 
 .heading {
     text-align: center;

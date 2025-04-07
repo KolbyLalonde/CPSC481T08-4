@@ -25,14 +25,15 @@ button h2 {
     }
     button{
         background-color: var(--antiFlashWhite);
-        width: 100px;
-        border: none;
+        width: 105px;
+        border: 2px solid black;
         cursor: pointer;
         display: flex;
         justify-content: flex-start; 
         align-items: center;
         margin: 0px;
         padding: 5px;
+        border-radius: 8px;
     }
 }
 
@@ -45,7 +46,7 @@ button h2 {
 .members {
     display: flex;
     flex-direction: column;
-    gap: 45px;
+    gap: 40px;
     margin-top: 30px;
     margin-bottom: 30px;
     padding-left: 20px;
@@ -116,4 +117,13 @@ button {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 80%;
+    box-sizing: border-box;
 }
