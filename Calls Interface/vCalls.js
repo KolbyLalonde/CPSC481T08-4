@@ -12,19 +12,53 @@ window.addEventListener('DOMContentLoaded', () => {
     timer(time);
 
     if (name === 'Lewis' || name2 === 'Lewis') {
-        document.getElementById("lewis").style.display = "block";
+        document.getElementById("lewis").classList.remove("hidden");
     } 
     if (name === 'Leslie' || name2 === 'Leslie') {
-        document.getElementById("leslie").style.display = "block";
+        document.getElementById("leslie").classList.remove("hidden");
     }
     if (name === 'Kwong-wing' || name2 === 'Kwong-wing') {
-        document.getElementById("kwong-wing").style.display = "block";
+        document.getElementById("kwong-wing").classList.remove("hidden");
     }
     if(name === 'everyone' || name2 === 'everyone'){
-        document.getElementById("lewis").style.display = "block";
-        document.getElementById("leslie").style.display = "block";
-        document.getElementById("kwong-wing").style.display = "block";
+        document.getElementById("lewis").classList.remove("hidden");
+        document.getElementById("leslie").classList.remove("hidden");
+        document.getElementById("kwong-wing").classList.remove("hidden");
     }
+
+    const allMembers = Array.from(document.querySelectorAll('.FullScreen-member'));
+    const visibleMembers = allMembers.filter(el => !el.classList.contains('hidden'));
+    
+    
+    let currentIndex = 0;
+    console.log(visibleMembers);
+    if (visibleMembers.length > 0) {
+        hideAllMembers();
+        showMember(currentIndex);
+
+        // Left button
+        document.getElementById('left').addEventListener('click', () => {
+            hideAllMembers();
+            currentIndex = (currentIndex - 1 + visibleMembers.length) % visibleMembers.length;
+            showMember(currentIndex);
+        });
+
+        // Right button
+        document.getElementById('right').addEventListener('click', () => {
+            hideAllMembers();
+            currentIndex = (currentIndex + 1) % visibleMembers.length;
+            showMember(currentIndex);
+        });
+    }
+
+    function hideAllMembers() {
+        visibleMembers.forEach(el => el.classList.add('hidden'));
+    }
+    
+    function showMember(index) {
+        visibleMembers[index].classList.remove('hidden');
+    }
+    
 
     function back(){
         window.location.href = page;
@@ -34,12 +68,14 @@ window.addEventListener('DOMContentLoaded', () => {
     function fullScreenToggle(){
         stopTimer();
         time = document.getElementById('timerDisplay').textContent 
+        reset();
         window.location.href = `vCall Full Screen.html?name=${name}&name2=${name2}&page=${page}&time=${time}`;
     }
 
     function minScreenToggle(){
         stopTimer();
         time = document.getElementById('timerDisplay').textContent 
+        reset();
         window.location.href = `vCall Interface.html?name=${name}&name2=${name2}&page=${page}&time=${time}`;
     }
 
@@ -47,8 +83,13 @@ window.addEventListener('DOMContentLoaded', () => {
     window.back = back;
     window.fullScreenToggle = fullScreenToggle;
     
-    
 });
+
+function reset(){
+    document.getElementById('lewis').classList.add('hidden');
+    document.getElementById('leslie').classList.add('hidden');
+    document.getElementById('kwong-wing').classList.add('hidden');  
+}
 
 function timer(time) {
 
@@ -80,3 +121,4 @@ function timer(time) {
 function stopTimer() {
     clearInterval(intervalId); // Stop the timer
 }
+

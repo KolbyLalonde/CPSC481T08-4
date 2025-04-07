@@ -1,16 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
     // Initialize time
+    let minutes = 0;
+    let seconds = 0;
 
     // Get the element where we will display the timer
     const timerDisplay = document.getElementById('timerDisplay');
-    minutes = timerDisplay.textContent.split(':')[0]; // Get the current minutes from the displayed time
-    seconds = timerDisplay.textContent.split(':')[1]; // Get the current seconds from the displayed time
+    
 
-
-    if(seconds = null){
-        minutes = 0;
-        seconds = 0;
-    }
     // Function to update the timer
     function updateTimer() {
         seconds++; // Increment seconds
