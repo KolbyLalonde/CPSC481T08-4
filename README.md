@@ -1,4 +1,5 @@
 # CPSC 481 – T08-4
+Completed by: Kolby Lalonde, Jessica LI and Sunny Hoang
 
 ## Welcome to **GenLink!**
 
