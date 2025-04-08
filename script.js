@@ -96,16 +96,48 @@ const Keyboard = {
         });
     },
 
+    // Modify the openCamera function in script.js
     openCamera() {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then((stream) => {
-                alert("Camera activated! You can now record or take a picture.");
-                // You can integrate this with a `<video>` element to display the feed.
-            })
-            .catch((err) => {
-                alert("Camera access denied or not supported.");
-                console.error(err);
-            });
+        // Create modal overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        
+        // Create prompt box
+        const prompt = document.createElement('div');
+        prompt.className = 'camera-prompt';
+        
+        // Add close button
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-button';
+        closeBtn.innerHTML = '&times;'; // This is the "×" character
+        
+        // Add message
+        const header = document.createElement('h3');
+        const message = document.createElement('p');
+        header.className = 'header-text';
+        message.className = 'prompt-text';
+        header.textContent = 'NOTE: This Camera Feature is Under Development';
+        message.textContent = 'The camera feature is a proof of concept. It is still under development and pictures/videos taken will not be saved.';
+        
+        // Assemble components
+        prompt.appendChild(closeBtn);
+        prompt.appendChild(header);
+        prompt.appendChild(message);
+        overlay.appendChild(prompt);
+        
+        // Add to body
+        document.body.appendChild(overlay);
+        
+        // Show overlay
+        overlay.style.display = 'flex';
+        
+        // Close handlers
+        const closeModal = () => document.body.removeChild(overlay);
+        
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
+        });
     },
     
     openFileSelector() {
